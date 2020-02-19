@@ -1,0 +1,1741 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Cx4073 : Assignment 1},
+  pdfauthor={Fong Hou Jun},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Cx4073 : Assignment 1}
+\author{Fong Hou Jun}
+\date{13 Feb 2020}
+
+\begin{document}
+\maketitle
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{analysis-of-naval-propulsion-data}{%
+\subsubsection{Analysis of Naval Propulsion
+Data}\label{analysis-of-naval-propulsion-data}}
+
+Import the CSV data file \texttt{assign1\_NavalData.csv} for analysis,
+and quickly check the structure of the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{navalData <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"assign1_NavalData.csv"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(navalData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    10000 obs. of  18 variables:
+##  $ X1 : num  3.14 7.15 5.14 4.16 9.3 9.3 2.09 1.14 8.21 8.21 ...
+##  $ X2 : int  9 21 15 12 27 27 6 3 24 24 ...
+##  $ X3 : num  8374 39007 21639 14722 72759 ...
+##  $ X4 : num  1387 2678 1924 1547 3560 ...
+##  $ X5 : num  7014 9116 8514 7758 9729 ...
+##  $ X6 : num  60.3 332.5 175.3 113.8 644.7 ...
+##  $ X7 : num  60.3 332.5 175.3 113.8 644.7 ...
+##  $ X8 : num  586 822 705 653 1058 ...
+##  $ X9 : int  288 288 288 288 288 288 288 288 288 288 ...
+##  $ X10: num  578 687 640 610 772 ...
+##  $ X11: num  1.39 2.99 2.07 1.66 4.55 4.52 1.33 1.26 3.6 3.58 ...
+##  $ X12: int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ X13: num  7.6 15.71 10.92 9.01 22.96 ...
+##  $ X14: num  1.02 1.04 1.03 1.02 1.05 1.05 1.02 1.02 1.04 1.04 ...
+##  $ X15: num  12.3 44 24.9 17.8 88.3 ...
+##  $ X16: num  0.24 0.87 0.49 0.35 1.75 1.79 0.26 0.25 1.18 1.22 ...
+##  $ Y1 : num  0.99 0.99 0.95 0.97 1 0.97 0.99 0.99 1 0.96 ...
+##  $ Y2 : num  0.98 0.98 1 0.98 0.98 0.98 1 0.99 0.99 0.98 ...
+\end{verbatim}
+
+The following table summarizes the features/variables in the dataset.
+You will also find them in the text file
+\texttt{assign1\_FeatureNames.txt}. The features/variables \texttt{X1}
+to \texttt{X16} are the predictors, while \texttt{Y1} and \texttt{Y2}
+are the \emph{target} response variables.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Description\tabularnewline
+\midrule
+\endhead
+X1 & Lever position (lp)\tabularnewline
+X2 & Ship speed (v) {[}knots{]}\tabularnewline
+X3 & Gas Turbine shaft torque (GTT) {[}kN m{]}\tabularnewline
+X4 & Gas Turbine rate of revolutions (GTn) {[}rpm{]}\tabularnewline
+X5 & Gas Generator rate of revolutions (GGn) {[}rpm{]}\tabularnewline
+X6 & Starboard Propeller Torque (Ts) {[}kN{]}\tabularnewline
+X7 & Port Propeller Torque (Tp) {[}kN{]}\tabularnewline
+X8 & HP Turbine exit temperature (T48) {[}C{]}\tabularnewline
+X9 & GT Compressor inlet air temperature (T1) {[}C{]}\tabularnewline
+X10 & GT Compressor outlet air temperature (T2) {[}C{]}\tabularnewline
+X11 & HP Turbine exit pressure (P48) {[}bar{]}\tabularnewline
+X12 & GT Compressor inlet air pressure (P1) {[}bar{]}\tabularnewline
+X13 & GT Compressor outlet air pressure (P2) {[}bar{]}\tabularnewline
+X14 & Gas Turbine exhaust gas pressure (Pexh) {[}bar{]}\tabularnewline
+X15 & Turbine Injecton Control (TIC) {[}\%{]}\tabularnewline
+X16 & Fuel flow (mf) {[}kg/s{]}\tabularnewline
+Y1 & GT Compressor decay state coefficient\tabularnewline
+Y2 & GT Turbine decay state coefficient\tabularnewline
+\bottomrule
+\end{longtable}
+
+The data is from a simulator of a naval vessel, characterized by a Gas
+Turbine (GT) propulsion plant. You may treat the available data as if it
+is from a hypothetical naval vessel. The propulsion system behaviour has
+been described with the parameters \texttt{X1} to \texttt{X16}, as
+detailed above, and the target is to predict the performance decay of
+the GT components such as \emph{GT Compressor} and \emph{GT Turbine}.
+
+\textbf{Task} : Build the best possible Linear Model you can to predict
+both \texttt{Y1} and \texttt{Y2}, using the training dataset
+\texttt{assign1\_NavalData.csv}. Then predict \texttt{Y1} and
+\texttt{Y2} values using your model on the test dataset
+\texttt{assign1\_NavalPred.csv}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Continue with Exploratory Data Analysis, Model Building and
+Prediction. Submit this .Rmd file as your Solution :
+{[}StudentID{]}.Rmd}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{basic-exploration-of-csv-file}{%
+\subsubsection{Basic Exploration of CSV
+file}\label{basic-exploration-of-csv-file}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Dimensions of the loaded dataset}
+\KeywordTok{dim}\NormalTok{(navalData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10000    18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Here, we can see that there are 10000 entries in the data }
+\CommentTok{# and 16 different variables.}
+
+\CommentTok{# Labels of the columns in csv file}
+\KeywordTok{names}\NormalTok{(navalData)      }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "X1"  "X2"  "X3"  "X4"  "X5"  "X6"  "X7"  "X8"  "X9"  "X10" "X11" "X12"
+## [13] "X13" "X14" "X15" "X16" "Y1"  "Y2"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# It gives us the names of each variable}
+
+\CommentTok{# Structure of the loaded dataset}
+\KeywordTok{str}\NormalTok{(navalData)        }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    10000 obs. of  18 variables:
+##  $ X1 : num  3.14 7.15 5.14 4.16 9.3 9.3 2.09 1.14 8.21 8.21 ...
+##  $ X2 : int  9 21 15 12 27 27 6 3 24 24 ...
+##  $ X3 : num  8374 39007 21639 14722 72759 ...
+##  $ X4 : num  1387 2678 1924 1547 3560 ...
+##  $ X5 : num  7014 9116 8514 7758 9729 ...
+##  $ X6 : num  60.3 332.5 175.3 113.8 644.7 ...
+##  $ X7 : num  60.3 332.5 175.3 113.8 644.7 ...
+##  $ X8 : num  586 822 705 653 1058 ...
+##  $ X9 : int  288 288 288 288 288 288 288 288 288 288 ...
+##  $ X10: num  578 687 640 610 772 ...
+##  $ X11: num  1.39 2.99 2.07 1.66 4.55 4.52 1.33 1.26 3.6 3.58 ...
+##  $ X12: int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ X13: num  7.6 15.71 10.92 9.01 22.96 ...
+##  $ X14: num  1.02 1.04 1.03 1.02 1.05 1.05 1.02 1.02 1.04 1.04 ...
+##  $ X15: num  12.3 44 24.9 17.8 88.3 ...
+##  $ X16: num  0.24 0.87 0.49 0.35 1.75 1.79 0.26 0.25 1.18 1.22 ...
+##  $ Y1 : num  0.99 0.99 0.95 0.97 1 0.97 0.99 0.99 1 0.96 ...
+##  $ Y2 : num  0.98 0.98 1 0.98 0.98 0.98 1 0.99 0.99 0.98 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# X2, X9 and X12 show are of integer data types, while }
+\CommentTok{# the rest are numeric data types.}
+
+\CommentTok{# First few rows of the loaded dataset}
+\KeywordTok{head}\NormalTok{(navalData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     X1 X2       X3      X4      X5     X6     X7      X8  X9    X10  X11 X12
+## 1 3.14  9  8373.85 1386.72 7013.62  60.28  60.28  585.98 288 578.07 1.39   1
+## 2 7.15 21 39007.12 2678.01 9116.04 332.49 332.49  821.74 288 686.53 2.99   1
+## 3 5.14 15 21639.19 1924.36 8513.72 175.32 175.32  705.11 288 640.12 2.07   1
+## 4 4.16 12 14721.84 1547.46 7757.85 113.78 113.78  653.07 288 610.15 1.66   1
+## 5 9.30 27 72759.21 3560.37 9729.10 644.74 644.74 1057.88 288 771.58 4.55   1
+## 6 9.30 27 72763.86 3560.39 9755.85 644.76 644.76 1086.81 288 780.50 4.52   1
+##     X13  X14   X15  X16   Y1   Y2
+## 1  7.60 1.02 12.35 0.24 0.99 0.98
+## 2 15.71 1.04 43.97 0.87 0.99 0.98
+## 3 10.92 1.03 24.89 0.49 0.95 1.00
+## 4  9.01 1.02 17.77 0.35 0.97 0.98
+## 5 22.96 1.05 88.27 1.75 1.00 0.98
+## 6 22.85 1.05 90.41 1.79 0.97 0.98
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Last few rows of the loaded dataset }
+\KeywordTok{tail}\NormalTok{(navalData)       }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         X1 X2       X3      X4      X5     X6     X7      X8  X9    X10  X11
+## 9995  7.15 21 39003.56 2678.03 9117.88 332.36 332.36  826.01 288 688.20 2.98
+## 9996  8.21 24 50980.73 3087.03 9292.11 437.85 437.85  922.31 288 727.73 3.61
+## 9997  9.30 27 72769.02 3560.39 9751.42 644.80 644.80 1068.72 288 775.77 4.52
+## 9998  9.30 27 72771.02 3560.40 9747.98 644.90 644.90 1056.83 288 772.58 4.53
+## 9999  5.14 15 21624.59 1924.34 8468.24 175.25 175.25  683.49 288 629.30 2.09
+## 10000 2.09  6  4500.88 1392.71 6842.73  31.20  31.20  534.26 288 564.56 1.26
+##       X12   X13  X14   X15  X16   Y1   Y2
+## 9995    1 15.71 1.04 44.23 0.88 0.99 0.98
+## 9996    1 18.79 1.04 60.69 1.20 1.00 0.98
+## 9997    1 22.69 1.05 88.78 1.76 0.98 0.99
+## 9998    1 22.61 1.05 87.72 1.74 0.99 0.99
+## 9999    1 11.01 1.03 23.91 0.47 1.00 1.00
+## 10000   1  6.73 1.02  0.00 0.17 0.97 1.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Upon closer observation, the values of X6 and X7 are identical.}
+\CommentTok{# Therefore, we will be removing one of them as it would be }
+\CommentTok{# redundant to have 2 variables with the same information.}
+
+\CommentTok{# Statistical summary for all variables in loaded dataset}
+\KeywordTok{summary}\NormalTok{(navalData)   }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        X1              X2              X3                X4      
+##  Min.   :1.140   Min.   : 3.00   Min.   :  253.6   Min.   :1308  
+##  1st Qu.:3.140   1st Qu.: 9.00   1st Qu.: 8375.9   1st Qu.:1387  
+##  Median :5.140   Median :15.00   Median :21630.7   Median :1924  
+##  Mean   :5.162   Mean   :14.98   Mean   :27160.0   Mean   :2134  
+##  3rd Qu.:7.150   3rd Qu.:21.00   3rd Qu.:39001.2   3rd Qu.:2678  
+##  Max.   :9.300   Max.   :27.00   Max.   :72783.3   Max.   :3561  
+##        X5             X6               X7               X8        
+##  Min.   :6589   Min.   :  5.30   Min.   :  5.30   Min.   : 444.7  
+##  1st Qu.:7058   1st Qu.: 60.32   1st Qu.: 60.32   1st Qu.: 590.0  
+##  Median :8482   Median :175.27   Median :175.27   Median : 706.0  
+##  Mean   :8198   Mean   :226.51   Mean   :226.51   Mean   : 734.9  
+##  3rd Qu.:9132   3rd Qu.:332.36   3rd Qu.:332.36   3rd Qu.: 833.6  
+##  Max.   :9797   Max.   :645.25   Max.   :645.25   Max.   :1115.8  
+##        X9           X10             X11             X12         X13       
+##  Min.   :288   Min.   :541.0   Min.   :1.090   Min.   :1   Min.   : 5.83  
+##  1st Qu.:288   1st Qu.:578.1   1st Qu.:1.390   1st Qu.:1   1st Qu.: 7.45  
+##  Median :288   Median :637.1   Median :2.080   Median :1   Median :11.09  
+##  Mean   :288   Mean   :646.0   Mean   :2.349   Mean   :1   Mean   :12.28  
+##  3rd Qu.:288   3rd Qu.:693.8   3rd Qu.:2.980   3rd Qu.:1   3rd Qu.:15.66  
+##  Max.   :288   Max.   :789.1   Max.   :4.560   Max.   :1   Max.   :23.14  
+##       X14            X15             X16               Y1        
+##  Min.   :1.02   Min.   : 0.00   Min.   :0.0700   Min.   :0.9500  
+##  1st Qu.:1.02   1st Qu.:14.12   1st Qu.:0.2500   1st Qu.:0.9600  
+##  Median :1.03   Median :25.27   Median :0.5000   Median :0.9800  
+##  Mean   :1.03   Mean   :33.56   Mean   :0.6607   Mean   :0.9757  
+##  3rd Qu.:1.04   3rd Qu.:44.53   3rd Qu.:0.8800   3rd Qu.:0.9900  
+##  Max.   :1.05   Max.   :92.56   Max.   :1.8300   Max.   :1.0000  
+##        Y2        
+##  Min.   :0.9800  
+##  1st Qu.:0.9800  
+##  Median :0.9900  
+##  Mean   :0.9885  
+##  3rd Qu.:0.9900  
+##  Max.   :1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# It returns a table with the results of the summary function}
+\CommentTok{# being applied to each variable in the loaded dataset}
+
+\CommentTok{# For each variable, it returns the minimum, 1st Quartile, median,}
+\CommentTok{# mean, 3rd Quartile and the maximum value. This provides the user with}
+\CommentTok{# the distribution, spread and central tendency of the variables.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{advanced-exploration-of-csv-file}{%
+\subsubsection{Advanced Exploration of CSV
+file}\label{advanced-exploration-of-csv-file}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Exploring the correlations between the variables of the dataset}
+\KeywordTok{cor}\NormalTok{(navalData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in cor(navalData): the standard deviation is zero
+\end{verbatim}
+
+\begin{verbatim}
+##               X1           X2           X3           X4           X5
+## X1   1.000000000  0.999918932  0.961060859  0.962170527  0.986018461
+## X2   0.999918932  1.000000000  0.958307867  0.960416376  0.986548821
+## X3   0.961060859  0.958307867  1.000000000  0.989710627  0.932836760
+## X4   0.962170527  0.960416376  0.989710627  1.000000000  0.942750924
+## X5   0.986018461  0.986548821  0.932836760  0.942750924  1.000000000
+## X6   0.959275784  0.956445990  0.999172632  0.988613230  0.929454314
+## X7   0.959275784  0.956445990  0.999172632  0.988613230  0.929454314
+## X8   0.961363106  0.958975323  0.991117108  0.979605879  0.939689075
+## X9            NA           NA           NA           NA           NA
+## X10  0.982901522  0.981293328  0.990183964  0.989218702  0.966616938
+## X11  0.963095924  0.960647472  0.998888416  0.995108006  0.937287676
+## X12           NA           NA           NA           NA           NA
+## X13  0.969167929  0.967014773  0.997576076  0.996031986  0.945731565
+## X14  0.939948005  0.938787319  0.972969659  0.982595630  0.930584897
+## X15  0.912781187  0.909186053  0.977483586  0.961994252  0.878080018
+## X16  0.931333951  0.927768436  0.995035351  0.980197416  0.896626923
+## Y1  -0.006831136 -0.006896537 -0.002047114 -0.003118643 -0.025153234
+## Y2  -0.004758308 -0.004737331 -0.004087297 -0.004376194  0.005878501
+##               X6           X7          X8 X9         X10          X11 X12
+## X1   0.959275784  0.959275784  0.96136311 NA  0.98290152  0.963095924  NA
+## X2   0.956445990  0.956445990  0.95897532 NA  0.98129333  0.960647472  NA
+## X3   0.999172632  0.999172632  0.99111711 NA  0.99018396  0.998888416  NA
+## X4   0.988613230  0.988613230  0.97960588 NA  0.98921870  0.995108006  NA
+## X5   0.929454314  0.929454314  0.93968908 NA  0.96661694  0.937287676  NA
+## X6   1.000000000  1.000000000  0.98594120 NA  0.98733461  0.997995101  NA
+## X7   1.000000000  1.000000000  0.98594120 NA  0.98733461  0.997995101  NA
+## X8   0.985941204  0.985941204  1.00000000 NA  0.99228188  0.989368313  NA
+## X9            NA           NA          NA  1          NA           NA  NA
+## X10  0.987334609  0.987334609  0.99228188 NA  1.00000000  0.991669537  NA
+## X11  0.997995101  0.997995101  0.98936831 NA  0.99166954  1.000000000  NA
+## X12           NA           NA          NA NA          NA           NA   1
+## X13  0.996164013  0.996164013  0.99044783 NA  0.99433606  0.999397450  NA
+## X14  0.972923822  0.972923822  0.96133975 NA  0.96767519  0.978193788  NA
+## X15  0.977039542  0.977039542  0.96927553 NA  0.95811467  0.975334806  NA
+## X16  0.994307212  0.994307212  0.98623588 NA  0.97630253  0.992683665  NA
+## Y1  -0.004261568 -0.004261568 -0.04428452 NA -0.05189850  0.002945739  NA
+## Y2  -0.004578771 -0.004578771 -0.03974577 NA -0.02004147 -0.006871948  NA
+##              X13          X14         X15         X16           Y1           Y2
+## X1   0.969167929  0.939948005  0.91278119  0.93133395 -0.006831136 -0.004758308
+## X2   0.967014773  0.938787319  0.90918605  0.92776844 -0.006896537 -0.004737331
+## X3   0.997576076  0.972969659  0.97748359  0.99503535 -0.002047114 -0.004087297
+## X4   0.996031986  0.982595630  0.96199425  0.98019742 -0.003118643 -0.004376194
+## X5   0.945731565  0.930584897  0.87808002  0.89662692 -0.025153234  0.005878501
+## X6   0.996164013  0.972923822  0.97703954  0.99430721 -0.004261568 -0.004578771
+## X7   0.996164013  0.972923822  0.97703954  0.99430721 -0.004261568 -0.004578771
+## X8   0.990447825  0.961339751  0.96927553  0.98623588 -0.044284518 -0.039745766
+## X9            NA           NA          NA          NA           NA           NA
+## X10  0.994336058  0.967675185  0.95811467  0.97630253 -0.051898504 -0.020041470
+## X11  0.999397450  0.978193788  0.97533481  0.99268366  0.002945739 -0.006871948
+## X12           NA           NA          NA          NA           NA           NA
+## X13  1.000000000  0.978681796  0.97171049  0.98921646  0.003249422 -0.021517833
+## X14  0.978681796  1.000000000  0.94932212  0.96452928 -0.005631884 -0.002865694
+## X15  0.971710488  0.949322120  1.00000000  0.98533613 -0.035551428 -0.021399292
+## X16  0.989216457  0.964529281  0.98533613  1.00000000 -0.017788588 -0.020441146
+## Y1   0.003249422 -0.005631884 -0.03555143 -0.01778859  1.000000000 -0.001220496
+## Y2  -0.021517833 -0.002865694 -0.02139929 -0.02044115 -0.001220496  1.000000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The table shows a warning that the standard deviation is zero. }
+\CommentTok{# This is due to values which are constant throughout the dataset.}
+\CommentTok{# Therefore, we should remove these as they do not value add to}
+\CommentTok{# The prediction later on.}
+
+
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{14}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{18}\NormalTok{)}
+\NormalTok{navalDataRevised <-}\StringTok{ }\NormalTok{navalData[,x]}
+\CommentTok{# Removing X7, X9 and X12 from the dataset.}
+
+\KeywordTok{summary}\NormalTok{(navalDataRevised)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        X1              X2              X3                X4      
+##  Min.   :1.140   Min.   : 3.00   Min.   :  253.6   Min.   :1308  
+##  1st Qu.:3.140   1st Qu.: 9.00   1st Qu.: 8375.9   1st Qu.:1387  
+##  Median :5.140   Median :15.00   Median :21630.7   Median :1924  
+##  Mean   :5.162   Mean   :14.98   Mean   :27160.0   Mean   :2134  
+##  3rd Qu.:7.150   3rd Qu.:21.00   3rd Qu.:39001.2   3rd Qu.:2678  
+##  Max.   :9.300   Max.   :27.00   Max.   :72783.3   Max.   :3561  
+##        X5             X6               X8              X10       
+##  Min.   :6589   Min.   :  5.30   Min.   : 444.7   Min.   :541.0  
+##  1st Qu.:7058   1st Qu.: 60.32   1st Qu.: 590.0   1st Qu.:578.1  
+##  Median :8482   Median :175.27   Median : 706.0   Median :637.1  
+##  Mean   :8198   Mean   :226.51   Mean   : 734.9   Mean   :646.0  
+##  3rd Qu.:9132   3rd Qu.:332.36   3rd Qu.: 833.6   3rd Qu.:693.8  
+##  Max.   :9797   Max.   :645.25   Max.   :1115.8   Max.   :789.1  
+##       X11             X13             X14            X15       
+##  Min.   :1.090   Min.   : 5.83   Min.   :1.02   Min.   : 0.00  
+##  1st Qu.:1.390   1st Qu.: 7.45   1st Qu.:1.02   1st Qu.:14.12  
+##  Median :2.080   Median :11.09   Median :1.03   Median :25.27  
+##  Mean   :2.349   Mean   :12.28   Mean   :1.03   Mean   :33.56  
+##  3rd Qu.:2.980   3rd Qu.:15.66   3rd Qu.:1.04   3rd Qu.:44.53  
+##  Max.   :4.560   Max.   :23.14   Max.   :1.05   Max.   :92.56  
+##       X16               Y1               Y2        
+##  Min.   :0.0700   Min.   :0.9500   Min.   :0.9800  
+##  1st Qu.:0.2500   1st Qu.:0.9600   1st Qu.:0.9800  
+##  Median :0.5000   Median :0.9800   Median :0.9900  
+##  Mean   :0.6607   Mean   :0.9757   Mean   :0.9885  
+##  3rd Qu.:0.8800   3rd Qu.:0.9900   3rd Qu.:0.9900  
+##  Max.   :1.8300   Max.   :1.0000   Max.   :1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# As seen from the table, the warning has disappeard, and we can }
+\CommentTok{# move on to explore other components of our dataset.}
+
+\KeywordTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.84 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(RColorBrewer)}
+\CommentTok{# This plots out a Co-relation heatmap to show how strongly variables affect one another.}
+\KeywordTok{corrplot.mixed}\NormalTok{(}\KeywordTok{cor}\NormalTok{(navalDataRevised), }\DataTypeTok{upper.col =} \KeywordTok{brewer.pal}\NormalTok{(}\DataTypeTok{n=}\DecValTok{10}\NormalTok{, }\DataTypeTok{name =}\StringTok{"Spectral"}\NormalTok{),}
+               \DataTypeTok{lower.col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{upper =} \StringTok{"pie"}\NormalTok{, }\DataTypeTok{number.cex =} \FloatTok{.75}\NormalTok{, }\DataTypeTok{number.digits =} \DecValTok{3}\NormalTok{, }\DataTypeTok{na.label =} \StringTok{"NA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Within the correlation matrix, we find that most variables}
+\CommentTok{# are strongly correlated with one another.}
+
+
+\CommentTok{# Plotting of a 2-dimensional scatterplot of all pairs of variables.}
+\KeywordTok{pairs}\NormalTok{(navalData, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After looking at the scatterplot, we can infer that many }
+\CommentTok{# variables have a linear relationship with one another. }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-linear-modeling-for-prediction-of-y1}{%
+\subsubsection{Basic Linear Modeling for Prediction of
+Y1}\label{basic-linear-modeling-for-prediction-of-y1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# For the linear model, we will be using Adjusted R-Squared as a }
+\CommentTok{# measurement for model improvement. When removing an insignificant}
+\CommentTok{# variable, Multiple R-squared may not increase but adjusted will.}
+\CommentTok{# The same occurs when adding an insignificant variable. Multiple }
+\CommentTok{# R-squared will increase, but adjusted may not. This happens as }
+\CommentTok{# Adjusted R-Squared takes into consideration the number of variables}
+\CommentTok{# being tested, while Multiple R-squared does not.}
+
+\CommentTok{# Linear model on Y1 vs the rest of the variables}
+\CommentTok{# Model 1, Full Model}
+\NormalTok{lmFit_Y1_V1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Y1 }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{-}\StringTok{ }\NormalTok{Y2, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 1}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ . - Y2, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0199370 -0.0041844  0.0000088  0.0041979  0.0194989 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(>|t|)    
+## (Intercept)  4.802e+00  6.551e-02   73.311   <2e-16 ***
+## X1           1.427e-01  5.819e-03   24.523   <2e-16 ***
+## X2          -3.930e-02  1.830e-03  -21.479   <2e-16 ***
+## X3          -3.308e-06  3.635e-07   -9.099   <2e-16 ***
+## X4           2.062e-07  2.958e-06    0.070    0.944    
+## X5           4.245e-05  8.700e-07   48.799   <2e-16 ***
+## X6          -5.856e-04  3.239e-05  -18.080   <2e-16 ***
+## X8           2.730e-04  1.984e-05   13.760   <2e-16 ***
+## X10         -4.138e-03  3.687e-05 -112.238   <2e-16 ***
+## X11          2.038e-01  8.331e-03   24.459   <2e-16 ***
+## X13          1.450e-02  8.543e-04   16.972   <2e-16 ***
+## X14         -2.288e+00  6.100e-02  -37.505   <2e-16 ***
+## X15         -6.124e-04  1.776e-05  -34.481   <2e-16 ***
+## X16          1.393e-01  1.072e-02   13.002   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.006122 on 9986 degrees of freedom
+## Multiple R-squared:  0.8398, Adjusted R-squared:  0.8396 
+## F-statistic:  4027 on 13 and 9986 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The "Full Model" statistics provides us with useful information}
+\CommentTok{# on the residuals, coefficients and formula of the linear model.}
+\CommentTok{# The coefficients show how significant each variable will be }
+\CommentTok{# when predicting for Y1}
+
+\CommentTok{# From here on out, we can improve the model by removing the least}
+\CommentTok{# significant variable one at a time. Variables with a higher value}
+\CommentTok{# of Pr(>|t|) will be the first to be removed.}
+
+\CommentTok{# Pr(>|t|) is the probability of the coefficient of a variable going}
+\CommentTok{# to zero. The higher this probability, the less significant it is.}
+\CommentTok{# As we can see from the table, X4 is the least significant variable,}
+\CommentTok{# and we will be removing it from the linear model.}
+
+\CommentTok{# Linear model on Y1 without X4}
+\CommentTok{# Model 2}
+\NormalTok{lmFit_Y1_V2 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V1, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{-}\StringTok{ }\NormalTok{X4, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 2}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0199368 -0.0041845  0.0000096  0.0041998  0.0194988 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(>|t|)    
+## (Intercept)  4.801e+00  6.161e-02   77.923   <2e-16 ***
+## X1           1.426e-01  5.685e-03   25.086   <2e-16 ***
+## X2          -3.927e-02  1.800e-03  -21.821   <2e-16 ***
+## X3          -3.312e-06  3.574e-07   -9.269   <2e-16 ***
+## X5           4.243e-05  8.101e-07   52.380   <2e-16 ***
+## X6          -5.855e-04  3.238e-05  -18.085   <2e-16 ***
+## X8           2.728e-04  1.976e-05   13.811   <2e-16 ***
+## X10         -4.137e-03  3.034e-05 -136.333   <2e-16 ***
+## X11          2.041e-01  7.218e-03   28.270   <2e-16 ***
+## X13          1.450e-02  8.510e-04   17.044   <2e-16 ***
+## X14         -2.287e+00  5.957e-02  -38.391   <2e-16 ***
+## X15         -6.123e-04  1.769e-05  -34.611   <2e-16 ***
+## X16          1.391e-01  1.019e-02   13.657   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.006122 on 9987 degrees of freedom
+## Multiple R-squared:  0.8398, Adjusted R-squared:  0.8396 
+## F-statistic:  4363 on 12 and 9987 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After removing X4, which had a high probability of 0.944, it did  }
+\CommentTok{# not improve its Adjusted R-squared. However, as removing it did  }
+\CommentTok{# not affect the probabilities of the remaining variables, it was safe }
+\CommentTok{# to remove from the formula.}
+
+\CommentTok{# We have now removed variables that had the highest probability of}
+\CommentTok{# going to zero, and we can proceed to introduce Non-linear variables}
+\CommentTok{# to the model.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{advanced-linear-modeling-for-prediction-of-y1}{%
+\subsubsection{Advanced Linear Modeling for Prediction of
+Y1}\label{advanced-linear-modeling-for-prediction-of-y1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Referring back to the correlation table between all the variables,}
+\CommentTok{# we can see that there is a high correlation between X10 and Y1, at }
+\CommentTok{# -0.05189. Thus, we can introduce X10^2 as a non-linear term.}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X10^2}
+\CommentTok{# Model 3}
+\NormalTok{lmFit_Y1_V3 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V2, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X10}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 3}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0183311 -0.0034680  0.0001834  0.0034452  0.0167750 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  8.617e+00  7.166e-02  120.24   <2e-16 ***
+## X1           1.601e-01  4.581e-03   34.96   <2e-16 ***
+## X2          -4.354e-02  1.449e-03  -30.04   <2e-16 ***
+## X3          -3.209e-06  2.876e-07  -11.16   <2e-16 ***
+## X5           6.524e-05  7.215e-07   90.42   <2e-16 ***
+## X6          -4.712e-04  2.610e-05  -18.05   <2e-16 ***
+## X8           1.209e-03  2.034e-05   59.42   <2e-16 ***
+## X10         -1.639e-02  1.679e-04  -97.59   <2e-16 ***
+## X11          3.262e-01  6.040e-03   54.00   <2e-16 ***
+## X13          1.533e-02  6.849e-04   22.39   <2e-16 ***
+## X14         -2.624e+00  4.815e-02  -54.49   <2e-16 ***
+## X15         -2.715e-04  1.497e-05  -18.14   <2e-16 ***
+## X16         -4.506e-01  1.145e-02  -39.35   <2e-16 ***
+## I(X10^2)     8.511e-06  1.154e-07   73.74   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.004926 on 9986 degrees of freedom
+## Multiple R-squared:  0.8963, Adjusted R-squared:  0.8961 
+## F-statistic:  6638 on 13 and 9986 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After introducing this non-linear term, we can infer that it is indeed}
+\CommentTok{# useful as the Adjusted R-squared increased significantly, from 0.8396 to}
+\CommentTok{# 0.8961! Folllowing this trend, we will introduce variables that show a}
+\CommentTok{# high correlation with Y1, namely, X8 and X15}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X8^2}
+\CommentTok{# Model 4}
+\NormalTok{lmFit_Y1_V4 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V3, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X8}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 4}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2) + I(X8^2), data = navalDataRevised)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.015775 -0.002771  0.000032  0.002821  0.012115 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.301e+01  8.111e-02  160.35   <2e-16 ***
+## X1           2.051e-01  3.692e-03   55.54   <2e-16 ***
+## X2          -5.960e-02  1.172e-03  -50.84   <2e-16 ***
+## X3          -1.297e-05  2.623e-07  -49.46   <2e-16 ***
+## X5           1.222e-04  9.431e-07  129.55   <2e-16 ***
+## X6           5.933e-04  2.504e-05   23.70   <2e-16 ***
+## X8           3.643e-03  3.585e-05  101.61   <2e-16 ***
+## X10         -3.160e-02  2.404e-04 -131.42   <2e-16 ***
+## X11          1.716e-01  5.217e-03   32.90   <2e-16 ***
+## X13          2.919e-02  5.745e-04   50.80   <2e-16 ***
+## X14         -3.148e+00  3.892e-02  -80.89   <2e-16 ***
+## X15         -8.328e-04  1.401e-05  -59.45   <2e-16 ***
+## X16         -1.747e-01  9.806e-03  -17.81   <2e-16 ***
+## I(X10^2)     1.989e-05  1.755e-07  113.34   <2e-16 ***
+## I(X8^2)     -1.796e-06  2.360e-08  -76.09   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003919 on 9985 degrees of freedom
+## Multiple R-squared:  0.9343, Adjusted R-squared:  0.9343 
+## F-statistic: 1.015e+04 on 14 and 9985 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the summary table of Model 4, it is again proven that X8^2 is a}
+\CommentTok{# useful variable. The Adjusted R-squared increased again, from 0.8961}
+\CommentTok{# to 0.9343. Now, we will add in X15^2}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X15^2}
+\CommentTok{# Model 5}
+\NormalTok{lmFit_Y1_V5 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V4, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X15}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 5}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2) + I(X8^2) + I(X15^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0157744 -0.0027604  0.0000083  0.0028076  0.0120575 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(>|t|)    
+## (Intercept)  1.322e+01  8.720e-02  151.645  < 2e-16 ***
+## X1           2.032e-01  3.695e-03   55.007  < 2e-16 ***
+## X2          -5.932e-02  1.171e-03  -50.674  < 2e-16 ***
+## X3          -1.411e-05  3.117e-07  -45.257  < 2e-16 ***
+## X5           1.247e-04  1.013e-06  123.135  < 2e-16 ***
+## X6           7.340e-04  3.265e-05   22.481  < 2e-16 ***
+## X8           3.653e-03  3.580e-05  102.033  < 2e-16 ***
+## X10         -3.181e-02  2.419e-04 -131.490  < 2e-16 ***
+## X11          1.724e-01  5.207e-03   33.101  < 2e-16 ***
+## X13          2.743e-02  6.305e-04   43.502  < 2e-16 ***
+## X14         -3.285e+00  4.388e-02  -74.874  < 2e-16 ***
+## X15         -7.569e-04  1.800e-05  -42.046  < 2e-16 ***
+## X16         -1.327e-01  1.162e-02  -11.419  < 2e-16 ***
+## I(X10^2)     1.995e-05  1.753e-07  113.786  < 2e-16 ***
+## I(X8^2)     -1.789e-06  2.358e-08  -75.857  < 2e-16 ***
+## I(X15^2)    -4.918e-06  7.346e-07   -6.696 2.26e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003911 on 9984 degrees of freedom
+## Multiple R-squared:  0.9346, Adjusted R-squared:  0.9345 
+## F-statistic:  9518 on 15 and 9984 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the summary table of Model 5, it shows that the Adjusted R-squared }
+\CommentTok{# only improved by 0.0002. However, as none of the other variables increased }
+\CommentTok{# in Pr(>|t|), and X15^2 has a very low probability, we can keep this}
+\CommentTok{# variable in our linear regression formula.}
+
+\CommentTok{# Here, I decided to introduce to the formula non-linear variables which}
+\CommentTok{# showed prominent trends of non-linearity. These variables are X10, X8}
+\CommentTok{# and X15. We will be introducing non-linear variables }
+\CommentTok{# X10:X8, X10:X15 and X8:X15.}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X10:X8}
+\CommentTok{# Model 6}
+\NormalTok{lmFit_Y1_V6 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V5, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\NormalTok{X10}\OperatorTok{:}\NormalTok{X8, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 6}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V6)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2) + I(X8^2) + I(X15^2) + X8:X10, 
+##     data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0152737 -0.0027450  0.0000564  0.0028249  0.0114049 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.527e+01  1.395e-01 109.410  < 2e-16 ***
+## X1           2.213e-01  3.762e-03  58.844  < 2e-16 ***
+## X2          -6.485e-02  1.189e-03 -54.545  < 2e-16 ***
+## X3          -1.736e-05  3.531e-07 -49.167  < 2e-16 ***
+## X5           1.344e-04  1.124e-06 119.554  < 2e-16 ***
+## X6           1.040e-03  3.609e-05  28.815  < 2e-16 ***
+## X8           7.087e-03  1.884e-04  37.625  < 2e-16 ***
+## X10         -4.180e-02  5.887e-04 -70.999  < 2e-16 ***
+## X11          1.520e-01  5.235e-03  29.039  < 2e-16 ***
+## X13          3.083e-02  6.465e-04  47.689  < 2e-16 ***
+## X14         -3.399e+00  4.358e-02 -78.007  < 2e-16 ***
+## X15         -9.333e-04  2.009e-05 -46.453  < 2e-16 ***
+## X16         -1.147e-01  1.147e-02 -10.000  < 2e-16 ***
+## I(X10^2)     3.247e-05  6.965e-07  46.626  < 2e-16 ***
+## I(X8^2)     -3.809e-07  7.933e-08  -4.802 1.59e-06 ***
+## I(X15^2)    -1.563e-06  7.445e-07  -2.100   0.0358 *  
+## X8:X10      -8.545e-06  4.605e-07 -18.556  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003845 on 9983 degrees of freedom
+## Multiple R-squared:  0.9368, Adjusted R-squared:  0.9367 
+## F-statistic:  9252 on 16 and 9983 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the summary of Model 6, we can see that the Adjusted R-squared once}
+\CommentTok{# again had an increase, from 0.9345 to 0.9367!}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X10:X15}
+\CommentTok{# Model 7}
+\NormalTok{lmFit_Y1_V7 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V6, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\NormalTok{X10}\OperatorTok{:}\NormalTok{X15, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 7}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2) + I(X8^2) + I(X15^2) + X8:X10 + 
+##     X10:X15, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0107287 -0.0027213  0.0000023  0.0027241  0.0108969 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.478e+01  1.328e-01 111.312   <2e-16 ***
+## X1           2.105e-01  3.574e-03  58.895   <2e-16 ***
+## X2          -6.272e-02  1.127e-03 -55.657   <2e-16 ***
+## X3          -1.958e-05  3.404e-07 -57.510   <2e-16 ***
+## X5           1.443e-04  1.103e-06 130.852   <2e-16 ***
+## X6           1.224e-03  3.457e-05  35.394   <2e-16 ***
+## X8           7.725e-03  1.792e-04  43.101   <2e-16 ***
+## X10         -3.996e-02  5.597e-04 -71.395   <2e-16 ***
+## X11          1.598e-01  4.960e-03  32.216   <2e-16 ***
+## X13          3.313e-02  6.155e-04  53.831   <2e-16 ***
+## X14         -3.590e+00  4.162e-02 -86.269   <2e-16 ***
+## X15         -1.333e-02  3.639e-04 -36.636   <2e-16 ***
+## X16         -1.818e-01  1.103e-02 -16.485   <2e-16 ***
+## I(X10^2)     3.056e-05  6.615e-07  46.207   <2e-16 ***
+## I(X8^2)     -6.857e-07  7.560e-08  -9.069   <2e-16 ***
+## I(X15^2)    -2.743e-05  1.035e-06 -26.503   <2e-16 ***
+## X8:X10      -8.791e-06  4.359e-07 -20.167   <2e-16 ***
+## X10:X15      2.326e-05  6.816e-07  34.118   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003639 on 9982 degrees of freedom
+## Multiple R-squared:  0.9434, Adjusted R-squared:  0.9433 
+## F-statistic:  9791 on 17 and 9982 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the summary of Model 7, we can see that the Adjusted R-squared once}
+\CommentTok{# again had an increase, from 0.9367 to 0.9433!}
+
+\CommentTok{# Linear model on Y1, introducing non-linear term: X8:X15}
+\CommentTok{# Model 8}
+\NormalTok{lmFit_Y1_V8 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y1_V7, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\NormalTok{X8}\OperatorTok{:}\NormalTok{X15, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 8}
+\KeywordTok{summary}\NormalTok{(lmFit_Y1_V8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X10^2) + I(X8^2) + I(X15^2) + X8:X10 + 
+##     X10:X15 + X8:X15, data = navalDataRevised)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.010349 -0.002706  0.000005  0.002722  0.011194 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.485e+01  1.343e-01 110.552   <2e-16 ***
+## X1           2.100e-01  3.575e-03  58.750   <2e-16 ***
+## X2          -6.261e-02  1.127e-03 -55.552   <2e-16 ***
+## X3          -1.958e-05  3.402e-07 -57.541   <2e-16 ***
+## X5           1.441e-04  1.103e-06 130.659   <2e-16 ***
+## X6           1.228e-03  3.459e-05  35.513   <2e-16 ***
+## X8           7.708e-03  1.792e-04  43.004   <2e-16 ***
+## X10         -4.014e-02  5.622e-04 -71.398   <2e-16 ***
+## X11          1.594e-01  4.959e-03  32.153   <2e-16 ***
+## X13          3.286e-02  6.214e-04  52.877   <2e-16 ***
+## X14         -3.602e+00  4.177e-02 -86.247   <2e-16 ***
+## X15         -1.253e-02  4.426e-04 -28.313   <2e-16 ***
+## X16         -1.728e-01  1.139e-02 -15.175   <2e-16 ***
+## I(X10^2)     3.067e-05  6.620e-07  46.330   <2e-16 ***
+## I(X8^2)     -7.610e-07  7.920e-08  -9.608   <2e-16 ***
+## I(X15^2)    -2.824e-05  1.065e-06 -26.507   <2e-16 ***
+## X8:X10      -8.645e-06  4.381e-07 -19.732   <2e-16 ***
+## X10:X15      2.095e-05  9.950e-07  21.060   <2e-16 ***
+## X8:X15       9.159e-07  2.885e-07   3.175   0.0015 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003638 on 9981 degrees of freedom
+## Multiple R-squared:  0.9435, Adjusted R-squared:  0.9434 
+## F-statistic:  9256 on 18 and 9981 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the summary of Model 8, we can see that the Adjusted R-squared once}
+\CommentTok{# again had an increase, from 0.9433 to 0.9434! As we can see, adding each}
+\CommentTok{# of these variables improved the Adjusted R-squared, which also }
+\CommentTok{# improves the linear model overall.}
+
+\CommentTok{# Now, we will proceed to remove any potential outliers in our dataset,}
+\CommentTok{# using a formula known as Cooks Distance.}
+
+\CommentTok{# Plot our model to look for potential outliers}
+\KeywordTok{plot}\NormalTok{(lmFit_Y1_V8)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-2.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-3.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculating cooks distance, and set a threshold of up to 2 standard}
+\CommentTok{# deviation to remove outliers.}
+\NormalTok{cd <-}\StringTok{ }\KeywordTok{cooks.distance}\NormalTok{(lmFit_Y1_V8)}
+\NormalTok{navalDataRevisedY1.clean <-}\StringTok{ }\NormalTok{navalDataRevised[}\KeywordTok{abs}\NormalTok{(cd) }\OperatorTok{<}\StringTok{ }\DecValTok{4}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(navalDataRevised), ]}
+
+\CommentTok{# Viewing and confirming the variables used in our linear model}
+\KeywordTok{formula}\NormalTok{(lmFit_Y1_V8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Y1 ~ X1 + X2 + X3 + X5 + X6 + X8 + X10 + X11 + X13 + X14 + X15 + 
+##     X16 + I(X10^2) + I(X8^2) + I(X15^2) + X8:X10 + X10:X15 + 
+##     X8:X15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fitting our "Best Model" with cleaned data}
+\NormalTok{lmFitY1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}\KeywordTok{formula}\NormalTok{(lmFit_Y1_V8), }\DataTypeTok{data =}\NormalTok{ navalDataRevisedY1.clean)}
+
+\CommentTok{# Evaluation to find the increase in model performance}
+\KeywordTok{summary}\NormalTok{(lmFitY1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = formula(lmFit_Y1_V8), data = navalDataRevisedY1.clean)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.008928 -0.002530 -0.000010  0.002567  0.008524 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.558e+01  1.342e-01 116.045  < 2e-16 ***
+## X1           2.172e-01  3.443e-03  63.081  < 2e-16 ***
+## X2          -6.502e-02  1.088e-03 -59.775  < 2e-16 ***
+## X3          -2.086e-05  3.354e-07 -62.191  < 2e-16 ***
+## X5           1.510e-04  1.076e-06 140.313  < 2e-16 ***
+## X6           1.361e-03  3.440e-05  39.577  < 2e-16 ***
+## X8           8.291e-03  1.836e-04  45.160  < 2e-16 ***
+## X10         -4.265e-02  5.674e-04 -75.161  < 2e-16 ***
+## X11          1.518e-01  4.688e-03  32.377  < 2e-16 ***
+## X13          3.375e-02  5.923e-04  56.981  < 2e-16 ***
+## X14         -3.742e+00  4.049e-02 -92.407  < 2e-16 ***
+## X15         -1.259e-02  4.452e-04 -28.277  < 2e-16 ***
+## X16         -1.487e-01  1.085e-02 -13.706  < 2e-16 ***
+## I(X10^2)     3.308e-05  6.754e-07  48.984  < 2e-16 ***
+## I(X8^2)     -7.189e-07  8.585e-08  -8.373  < 2e-16 ***
+## I(X15^2)    -3.233e-05  1.157e-06 -27.932  < 2e-16 ***
+## X8:X10      -9.660e-06  4.569e-07 -21.145  < 2e-16 ***
+## X10:X15      2.046e-05  1.010e-06  20.253  < 2e-16 ***
+## X8:X15       1.644e-06  3.241e-07   5.073 3.98e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003348 on 9465 degrees of freedom
+## Multiple R-squared:  0.9518, Adjusted R-squared:  0.9517 
+## F-statistic: 1.038e+04 on 18 and 9465 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lmFitY1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-5.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-6.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-7.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-5-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After removing the outliers, our Adjusted R-squared has once again improved, }
+\CommentTok{# from 0.9434 to 0.9517. }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{basic-linear-modeling-for-prediction-of-y2}{%
+\subsubsection{Basic Linear Modeling for Prediction of
+Y2}\label{basic-linear-modeling-for-prediction-of-y2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Similarly for Y2, we will be using Adjusted R-squared as a measurement}
+\CommentTok{# of how accurate our model is.}
+
+\CommentTok{# Linear model on Y2 vs the rest of the variables}
+\CommentTok{# Model 1, Full Model}
+\NormalTok{lmFit_Y2_V1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Y2 }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{-}\StringTok{ }\NormalTok{Y1, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 1}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ . - Y1, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0114915 -0.0026195  0.0000338  0.0025740  0.0129962 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(>|t|)    
+## (Intercept)  4.296e-01  3.798e-02   11.310  < 2e-16 ***
+## X1           2.262e-02  3.374e-03    6.702 2.16e-11 ***
+## X2          -2.146e-03  1.061e-03   -2.023   0.0431 *  
+## X3           1.362e-05  2.108e-07   64.616  < 2e-16 ***
+## X4           4.760e-05  1.715e-06   27.754  < 2e-16 ***
+## X5           2.063e-05  5.045e-07   40.890  < 2e-16 ***
+## X6          -1.487e-03  1.878e-05  -79.172  < 2e-16 ***
+## X8          -6.396e-04  1.150e-05  -55.602  < 2e-16 ***
+## X10          3.572e-04  2.138e-05   16.706  < 2e-16 ***
+## X11          1.045e-01  4.831e-03   21.630  < 2e-16 ***
+## X13         -5.088e-02  4.954e-04 -102.703  < 2e-16 ***
+## X14          5.964e-01  3.537e-02   16.863  < 2e-16 ***
+## X15         -1.528e-04  1.030e-05  -14.841  < 2e-16 ***
+## X16          2.722e-01  6.214e-03   43.806  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.00355 on 9986 degrees of freedom
+## Multiple R-squared:  0.7885, Adjusted R-squared:  0.7882 
+## F-statistic:  2864 on 13 and 9986 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The "Full Model" statistics provides us with useful information}
+\CommentTok{# on the residuals, coefficients and formula of the linear model.}
+\CommentTok{# The coefficients show how significant each variable will be }
+\CommentTok{# when predicting for Y2}
+
+\CommentTok{# From here on out, we can improve the model by removing the least}
+\CommentTok{# significant variable one at a time. Variables with a higher value}
+\CommentTok{# of Pr(>|t|) will be the first to be removed.}
+
+\CommentTok{# Pr(>|t|) is the probability of the coefficient of a variable going}
+\CommentTok{# to zero. The higher this probability, the less significant it is.}
+\CommentTok{# From the table, it shows that X2 is the least significant variable,}
+\CommentTok{# and we will be removing that from the linear model.}
+
+\CommentTok{# Linear model on Y2 without X2}
+\CommentTok{# Model 2}
+\NormalTok{lmFit_Y2_V2 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V1, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{-}\StringTok{ }\NormalTok{X2, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 2}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0114156 -0.0026292  0.0000333  0.0025772  0.0130349 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  4.719e-01  3.171e-02   14.88   <2e-16 ***
+## X1           1.581e-02  2.817e-04   56.13   <2e-16 ***
+## X3           1.366e-05  2.097e-07   65.15   <2e-16 ***
+## X4           4.698e-05  1.687e-06   27.84   <2e-16 ***
+## X5           2.082e-05  4.951e-07   42.06   <2e-16 ***
+## X6          -1.481e-03  1.859e-05  -79.70   <2e-16 ***
+## X8          -6.403e-04  1.150e-05  -55.69   <2e-16 ***
+## X10          3.640e-04  2.111e-05   17.24   <2e-16 ***
+## X11          1.041e-01  4.827e-03   21.56   <2e-16 ***
+## X13         -5.072e-02  4.896e-04 -103.61   <2e-16 ***
+## X14          5.519e-01  2.772e-02   19.91   <2e-16 ***
+## X15         -1.493e-04  1.015e-05  -14.71   <2e-16 ***
+## X16          2.704e-01  6.151e-03   43.96   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003551 on 9987 degrees of freedom
+## Multiple R-squared:  0.7884, Adjusted R-squared:  0.7881 
+## F-statistic:  3101 on 12 and 9987 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the table, it seems that removing X2 decreased the Adjusted }
+\CommentTok{# R-squared value. However, it also changed the Pr(>|t|) value of }
+\CommentTok{# X1 to be significantly lower. Thus, removing X2 is a good thing}
+\CommentTok{# as all variables in the formula now are very important.}
+
+\CommentTok{# We have now removed variables that had the highest probability of}
+\CommentTok{# going to zero, and we can proceed to introduce Non-linear variables}
+\CommentTok{# to the model.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{advanced-linear-modeling-on-predictiong-y2}{%
+\subsubsection{Advanced Linear Modeling on Predictiong
+Y2}\label{advanced-linear-modeling-on-predictiong-y2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After reberringto the correlation table between variables, we}
+\CommentTok{# can see that there is a high negative correlation between X18  }
+\CommentTok{# and Y1, at -0.03974. Thus, we will introduce X8^2 as a non-linear }
+\CommentTok{# term into the system.}
+
+\CommentTok{# Linear model on Y2, introducing non-linear term X8^2}
+\CommentTok{# Model 3}
+\NormalTok{lmFit_Y2_V3 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V2, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X8}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 3}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X8^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0115588 -0.0026356  0.0000323  0.0025706  0.0132624 
+## 
+## Coefficients:
+##               Estimate Std. Error  t value Pr(>|t|)    
+## (Intercept)  4.541e-01  3.197e-02   14.205  < 2e-16 ***
+## X1           1.591e-02  2.824e-04   56.328  < 2e-16 ***
+## X3           1.386e-05  2.146e-07   64.573  < 2e-16 ***
+## X4           4.385e-05  1.846e-06   23.763  < 2e-16 ***
+## X5           1.966e-05  5.683e-07   34.596  < 2e-16 ***
+## X6          -1.508e-03  1.964e-05  -76.780  < 2e-16 ***
+## X8          -6.756e-04  1.427e-05  -47.334  < 2e-16 ***
+## X10          3.524e-04  2.128e-05   16.559  < 2e-16 ***
+## X11          1.179e-01  5.850e-03   20.146  < 2e-16 ***
+## X13         -5.105e-02  4.953e-04 -103.058  < 2e-16 ***
+## X14          5.824e-01  2.865e-02   20.333  < 2e-16 ***
+## X15         -1.198e-04  1.236e-05   -9.692  < 2e-16 ***
+## X16          2.371e-01  1.009e-02   23.501  < 2e-16 ***
+## I(X8^2)      5.085e-08  1.221e-08    4.163 3.16e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003548 on 9986 degrees of freedom
+## Multiple R-squared:  0.7888, Adjusted R-squared:  0.7885 
+## F-statistic:  2868 on 13 and 9986 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After introducing X8^2 into the system, it seems that this variable}
+\CommentTok{# is not very significant as it raised the Adjusted R-squared only}
+\CommentTok{# by a slight amount. We will continue to add other variables which}
+\CommentTok{# show strong correlations with Y2}
+
+\CommentTok{# Linear model on Y2, introducing non-linear term X15^2}
+\CommentTok{# Model 4}
+\NormalTok{lmFit_Y2_V4 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V3, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X15}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 4}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X8^2) + I(X15^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0121155 -0.0025077  0.0000873  0.0025317  0.0119243 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -3.357e-02  3.580e-02  -0.938    0.348    
+## X1           2.127e-02  3.377e-04  62.976  < 2e-16 ***
+## X3           1.867e-05  2.738e-07  68.197  < 2e-16 ***
+## X4           7.195e-05  2.066e-06  34.833  < 2e-16 ***
+## X5           1.533e-05  5.719e-07  26.796  < 2e-16 ***
+## X6          -2.020e-03  2.686e-05 -75.198  < 2e-16 ***
+## X8          -6.070e-04  1.402e-05 -43.309  < 2e-16 ***
+## X10          6.994e-04  2.426e-05  28.827  < 2e-16 ***
+## X11          5.757e-02  6.078e-03   9.473  < 2e-16 ***
+## X13         -4.351e-02  5.543e-04 -78.504  < 2e-16 ***
+## X14          8.863e-01  2.988e-02  29.663  < 2e-16 ***
+## X15         -4.845e-04  1.806e-05 -26.825  < 2e-16 ***
+## X16          1.391e-01  1.040e-02  13.379  < 2e-16 ***
+## I(X8^2)     -8.319e-08  1.280e-08  -6.497 8.58e-11 ***
+## I(X15^2)     2.002e-05  7.439e-07  26.905  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003426 on 9985 degrees of freedom
+## Multiple R-squared:  0.803,  Adjusted R-squared:  0.8028 
+## F-statistic:  2908 on 14 and 9985 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After adding the term X15^2, the Adjusted R-sqaured increased quite }
+\CommentTok{# significantly, from 0.7885 to 0.8028! This shows that adding non-linear}
+\CommentTok{# terms that have a higher coefficient of correlation would benefit the }
+\CommentTok{# linear regression model.}
+
+\CommentTok{# Linear model on Y2, introducing non-linear term X13^2}
+\CommentTok{# Model 5}
+\NormalTok{lmFit_Y2_V5 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V4, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X13}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 5}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X8^2) + I(X15^2) + I(X13^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0121502 -0.0024296  0.0001615  0.0024857  0.0130182 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  2.273e-01  3.599e-02   6.315 2.81e-10 ***
+## X1           2.553e-02  3.642e-04  70.107  < 2e-16 ***
+## X3           1.923e-05  2.655e-07  72.438  < 2e-16 ***
+## X4           1.157e-04  2.593e-06  44.608  < 2e-16 ***
+## X5           3.015e-05  7.875e-07  38.281  < 2e-16 ***
+## X6          -2.057e-03  2.600e-05 -79.118  < 2e-16 ***
+## X8          -4.436e-04  1.490e-05 -29.780  < 2e-16 ***
+## X10          3.377e-04  2.716e-05  12.434  < 2e-16 ***
+## X11          5.614e-02  5.876e-03   9.555  < 2e-16 ***
+## X13         -6.794e-02  1.068e-03 -63.602  < 2e-16 ***
+## X14          7.021e-01  2.972e-02  23.626  < 2e-16 ***
+## X15         -2.100e-04  2.032e-05 -10.334  < 2e-16 ***
+## X16          4.719e-02  1.064e-02   4.436 9.27e-06 ***
+## I(X8^2)     -1.059e-08  1.268e-08  -0.835    0.404    
+## I(X15^2)     1.077e-05  7.997e-07  13.471  < 2e-16 ***
+## I(X13^2)     7.190e-04  2.720e-05  26.432  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003312 on 9984 degrees of freedom
+## Multiple R-squared:  0.8159, Adjusted R-squared:  0.8156 
+## F-statistic:  2950 on 15 and 9984 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the table, it shows that the Adjusted R-squared increased once again.}
+\CommentTok{# However, the Pr(>|t|) value of X8^2 has increased significantly. As this}
+\CommentTok{# will not benefit our model, we will remove this term, while adding in}
+\CommentTok{# X16^2}
+
+\CommentTok{# Linear model on Y2, introducing non-linear term X16^2, removing X8^2}
+\CommentTok{# Model 6}
+\NormalTok{lmFit_Y2_V6 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V5, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(X16}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{-}\StringTok{ }\KeywordTok{I}\NormalTok{(X8}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{# Summary of Model 6}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V6)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X15^2) + I(X13^2) + I(X16^2), data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0113756 -0.0023657  0.0001781  0.0025042  0.0114788 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  5.201e-01  3.808e-02  13.659  < 2e-16 ***
+## X1           2.540e-02  3.572e-04  71.112  < 2e-16 ***
+## X3           1.747e-05  2.754e-07  63.410  < 2e-16 ***
+## X4           1.130e-04  2.467e-06  45.817  < 2e-16 ***
+## X5           3.865e-05  8.913e-07  43.364  < 2e-16 ***
+## X6          -1.846e-03  2.778e-05 -66.434  < 2e-16 ***
+## X8          -4.769e-04  1.314e-05 -36.289  < 2e-16 ***
+## X10          1.457e-04  2.657e-05   5.485 4.24e-08 ***
+## X11          4.225e-02  4.652e-03   9.082  < 2e-16 ***
+## X13         -7.459e-02  1.039e-03 -71.796  < 2e-16 ***
+## X14          5.160e-01  3.076e-02  16.776  < 2e-16 ***
+## X15         -6.031e-04  2.600e-05 -23.198  < 2e-16 ***
+## X16          2.026e-01  1.196e-02  16.937  < 2e-16 ***
+## I(X15^2)     1.985e-05  8.595e-07  23.099  < 2e-16 ***
+## I(X13^2)     8.629e-04  2.707e-05  31.873  < 2e-16 ***
+## I(X16^2)    -5.667e-02  2.958e-03 -19.161  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003253 on 9984 degrees of freedom
+## Multiple R-squared:  0.8224, Adjusted R-squared:  0.8222 
+## F-statistic:  3083 on 15 and 9984 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the table, the Adjusted R-squared value has increased again from}
+\CommentTok{# 0.8156 to 0.8222. From here, we will be adding non-linear variables that}
+\CommentTok{# showed prominent trends of non-linearity. These terms are X8:X15, X8:X13,}
+\CommentTok{# X8:X16, X15:X13, X15:X16 and X13:X16}
+
+\CommentTok{# Linear model on Y2, introducing non-linear terms with prominent trends}
+\CommentTok{# Model 7}
+\NormalTok{lmFit_Y2_V7 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V6, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\NormalTok{X8}\OperatorTok{:}\NormalTok{X15}
+                                       \OperatorTok{+}\StringTok{ }\NormalTok{X8}\OperatorTok{:}\NormalTok{X13}
+                                       \OperatorTok{+}\StringTok{ }\NormalTok{X8}\OperatorTok{:}\NormalTok{X16}
+                                       \OperatorTok{+}\StringTok{ }\NormalTok{X15}\OperatorTok{:}\NormalTok{X13}
+                                       \OperatorTok{+}\StringTok{ }\NormalTok{X15}\OperatorTok{:}\NormalTok{X16}
+                                       \OperatorTok{+}\StringTok{ }\NormalTok{X13}\OperatorTok{:}\NormalTok{X16, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{#Summary of Model 7}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X15^2) + I(X13^2) + I(X16^2) + X8:X15 + 
+##     X8:X13 + X8:X16 + X13:X15 + X15:X16 + X13:X16, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0095369 -0.0023084  0.0002418  0.0024195  0.0080077 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  6.131e-01  4.582e-02  13.382  < 2e-16 ***
+## X1           2.687e-02  3.654e-04  73.543  < 2e-16 ***
+## X3           2.038e-05  3.465e-07  58.822  < 2e-16 ***
+## X4           8.255e-05  3.385e-06  24.386  < 2e-16 ***
+## X5           3.663e-05  1.140e-06  32.125  < 2e-16 ***
+## X6          -2.155e-03  3.718e-05 -57.970  < 2e-16 ***
+## X8          -9.969e-04  4.275e-05 -23.321  < 2e-16 ***
+## X10          2.167e-04  5.525e-05   3.922 8.83e-05 ***
+## X11          1.585e-01  6.728e-03  23.552  < 2e-16 ***
+## X13         -1.797e-01  4.603e-03 -39.026  < 2e-16 ***
+## X14          7.560e-01  3.547e-02  21.313  < 2e-16 ***
+## X15          1.389e-02  6.851e-04  20.281  < 2e-16 ***
+## X16          1.428e-01  6.536e-02   2.184  0.02898 *  
+## I(X15^2)    -1.062e-05  1.558e-06  -6.818 9.78e-12 ***
+## I(X13^2)     3.016e-03  1.783e-04  16.915  < 2e-16 ***
+## I(X16^2)    -4.405e-01  5.978e-02  -7.368 1.87e-13 ***
+## X8:X15      -1.060e-05  1.019e-06 -10.400  < 2e-16 ***
+## X8:X13       1.291e-04  6.139e-06  21.026  < 2e-16 ***
+## X8:X16      -5.126e-04  8.020e-05  -6.391 1.72e-10 ***
+## X13:X15     -1.754e-03  6.261e-05 -28.020  < 2e-16 ***
+## X15:X16      1.942e-02  1.146e-03  16.957  < 2e-16 ***
+## X13:X16      1.486e-02  5.565e-03   2.669  0.00761 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003011 on 9978 degrees of freedom
+## Multiple R-squared:  0.8479, Adjusted R-squared:  0.8476 
+## F-statistic:  2650 on 21 and 9978 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# As we can see, adding these terms resulted in yet another increase in}
+\CommentTok{# Adjusted R-squared, from 0.8222 to 0.8476. However, the terms X16 and }
+\CommentTok{# X13:X16 have increased in their Pr(|t|). However since they are still}
+\CommentTok{# rated relatively high, we can leave the model as it is.}
+
+\CommentTok{# We will now proceed to remove any potential outliers in the dataset}
+\CommentTok{# using Cooks Distance.}
+
+\CommentTok{# Plot out our model to visualise and eyeball any potential outliers}
+\KeywordTok{plot}\NormalTok{(lmFit_Y2_V7)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-2.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-3.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Calculating cooks distance, and set a threshold of up to 2 standard}
+\CommentTok{# deviation to remove outliers.}
+\NormalTok{cd <-}\StringTok{ }\KeywordTok{cooks.distance}\NormalTok{(lmFit_Y2_V7)}
+\NormalTok{navalDataRevisedY2.clean <-}\StringTok{ }\NormalTok{navalDataRevised[}\KeywordTok{abs}\NormalTok{(cd) }\OperatorTok{<}\StringTok{ }\DecValTok{4}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(navalDataRevised), ]}
+
+\CommentTok{# Viewing and confirming the variables used in our linear model}
+\KeywordTok{formula}\NormalTok{(lmFit_Y2_V7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + X14 + X15 + 
+##     X16 + I(X15^2) + I(X13^2) + I(X16^2) + X8:X15 + X8:X13 + 
+##     X8:X16 + X13:X15 + X15:X16 + X13:X16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fitting our "Best Model" with cleaned data}
+\NormalTok{lmFitY2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}\KeywordTok{formula}\NormalTok{(lmFit_Y2_V7), }\DataTypeTok{data =}\NormalTok{ navalDataRevisedY2.clean)}
+
+\CommentTok{# Evaluation to find the increase in model performance}
+\KeywordTok{summary}\NormalTok{(lmFitY2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = formula(lmFit_Y2_V7), data = navalDataRevisedY2.clean)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0063845 -0.0022362  0.0002085  0.0023095  0.0056895 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  5.080e-01  4.414e-02  11.510  < 2e-16 ***
+## X1           2.933e-02  3.587e-04  81.792  < 2e-16 ***
+## X3           2.226e-05  3.424e-07  65.006  < 2e-16 ***
+## X4           8.681e-05  3.275e-06  26.506  < 2e-16 ***
+## X5           3.446e-05  1.128e-06  30.537  < 2e-16 ***
+## X6          -2.393e-03  3.702e-05 -64.629  < 2e-16 ***
+## X8          -1.243e-03  4.469e-05 -27.821  < 2e-16 ***
+## X10          4.195e-04  5.578e-05   7.519 6.00e-14 ***
+## X11          1.346e-01  6.512e-03  20.672  < 2e-16 ***
+## X13         -1.951e-01  4.551e-03 -42.869  < 2e-16 ***
+## X14          8.928e-01  3.453e-02  25.855  < 2e-16 ***
+## X15          1.672e-02  7.039e-04  23.756  < 2e-16 ***
+## X16          2.772e-01  6.556e-02   4.229 2.37e-05 ***
+## I(X15^2)    -1.718e-05  1.630e-06 -10.540  < 2e-16 ***
+## I(X13^2)     3.333e-03  1.727e-04  19.293  < 2e-16 ***
+## I(X16^2)    -5.362e-01  5.967e-02  -8.987  < 2e-16 ***
+## X8:X15      -1.519e-05  1.035e-06 -14.677  < 2e-16 ***
+## X8:X13       1.582e-04  6.315e-06  25.048  < 2e-16 ***
+## X8:X16      -6.327e-04  8.085e-05  -7.826 5.59e-15 ***
+## X13:X15     -1.941e-03  6.454e-05 -30.071  < 2e-16 ***
+## X15:X16      2.487e-02  1.176e-03  21.151  < 2e-16 ***
+## X13:X16      7.398e-03  5.485e-03   1.349    0.177    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.00278 on 9521 degrees of freedom
+## Multiple R-squared:  0.8703, Adjusted R-squared:   0.87 
+## F-statistic:  3041 on 21 and 9521 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lmFitY2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-5.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-6.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-7.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# After removing the outliers, the Adjusted R-squared has improved once again,}
+\CommentTok{# from 0.8452 to 0.87. However, the term X13:X16 has increased in its Pr(|t|)}
+\CommentTok{# value, to a point where it is no longer significant. We will re do the whole}
+\CommentTok{# linear model, but without X13:X16}
+
+\CommentTok{# Linear model on Y2, introducing non-linear terms without X13:X16}
+\CommentTok{# Model 8}
+\NormalTok{lmFit_Y2_V8 <-}\StringTok{ }\KeywordTok{update}\NormalTok{(lmFit_Y2_V7, }\OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{-}\StringTok{ }\NormalTok{X13}\OperatorTok{:}\NormalTok{X16, }\DataTypeTok{data =}\NormalTok{ navalDataRevised)}
+
+\CommentTok{#Summary of Model 8}
+\KeywordTok{summary}\NormalTok{(lmFit_Y2_V8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + 
+##     X14 + X15 + X16 + I(X15^2) + I(X13^2) + I(X16^2) + X8:X15 + 
+##     X8:X13 + X8:X16 + X13:X15 + X15:X16, data = navalDataRevised)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0093853 -0.0023133  0.0002567  0.0024058  0.0079984 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  6.161e-01  4.582e-02  13.445  < 2e-16 ***
+## X1           2.663e-02  3.540e-04  75.211  < 2e-16 ***
+## X3           2.045e-05  3.457e-07  59.162  < 2e-16 ***
+## X4           7.657e-05  2.539e-06  30.156  < 2e-16 ***
+## X5           3.566e-05  1.080e-06  33.004  < 2e-16 ***
+## X6          -2.171e-03  3.674e-05 -59.089  < 2e-16 ***
+## X8          -1.080e-03  2.936e-05 -36.784  < 2e-16 ***
+## X10          2.928e-04  4.733e-05   6.187 6.36e-10 ***
+## X11          1.600e-01  6.704e-03  23.872  < 2e-16 ***
+## X13         -1.884e-01  3.225e-03 -58.431  < 2e-16 ***
+## X14          7.716e-01  3.500e-02  22.043  < 2e-16 ***
+## X15          1.323e-02  6.386e-04  20.717  < 2e-16 ***
+## X16          3.039e-01  2.505e-02  12.135  < 2e-16 ***
+## I(X15^2)    -9.736e-06  1.523e-06  -6.394 1.69e-10 ***
+## I(X13^2)     3.385e-03  1.122e-04  30.177  < 2e-16 ***
+## I(X16^2)    -3.171e-01  3.791e-02  -8.364  < 2e-16 ***
+## X8:X15      -9.974e-06  9.922e-07 -10.053  < 2e-16 ***
+## X8:X13       1.397e-04  4.673e-06  29.899  < 2e-16 ***
+## X8:X16      -6.629e-04  5.713e-05 -11.604  < 2e-16 ***
+## X13:X15     -1.685e-03  5.699e-05 -29.567  < 2e-16 ***
+## X15:X16      1.850e-02  1.092e-03  16.940  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.003012 on 9979 degrees of freedom
+## Multiple R-squared:  0.8478, Adjusted R-squared:  0.8475 
+## F-statistic:  2780 on 20 and 9979 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the graph, we can see that all the variables are significant, and the }
+\CommentTok{# Adjusted R-squared only dropped by 0.0001. Thus, we can move on to remove }
+\CommentTok{# potential outliers using Cooks Distance.}
+
+\NormalTok{cd <-}\StringTok{ }\KeywordTok{cooks.distance}\NormalTok{(lmFit_Y2_V8)}
+\NormalTok{navalDataRevisedY2.clean <-}\StringTok{ }\NormalTok{navalDataRevised[}\KeywordTok{abs}\NormalTok{(cd) }\OperatorTok{<}\StringTok{ }\DecValTok{4}\OperatorTok{/}\KeywordTok{nrow}\NormalTok{(navalDataRevised), ]}
+
+\CommentTok{# Viewing and confirming variables used in our linear model}
+\KeywordTok{formula}\NormalTok{(lmFit_Y2_V8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Y2 ~ X1 + X3 + X4 + X5 + X6 + X8 + X10 + X11 + X13 + X14 + X15 + 
+##     X16 + I(X15^2) + I(X13^2) + I(X16^2) + X8:X15 + X8:X13 + 
+##     X8:X16 + X13:X15 + X15:X16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Fitting our "Best Model" with cleaned data}
+\NormalTok{lmFitY2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}\KeywordTok{formula}\NormalTok{(lmFit_Y2_V8), }\DataTypeTok{data =}\NormalTok{ navalDataRevisedY2.clean)}
+
+\CommentTok{# Evaluation to find the increase in model performance}
+\KeywordTok{summary}\NormalTok{(lmFitY2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = formula(lmFit_Y2_V8), data = navalDataRevisedY2.clean)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.006370 -0.002230  0.000223  0.002302  0.005694 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  5.023e-01  4.415e-02  11.379   <2e-16 ***
+## X1           2.933e-02  3.516e-04  83.431   <2e-16 ***
+## X3           2.241e-05  3.417e-07  65.589   <2e-16 ***
+## X4           8.385e-05  2.449e-06  34.238   <2e-16 ***
+## X5           3.391e-05  1.060e-06  31.992   <2e-16 ***
+## X6          -2.413e-03  3.652e-05 -66.087   <2e-16 ***
+## X8          -1.302e-03  3.155e-05 -41.281   <2e-16 ***
+## X10          4.680e-04  4.725e-05   9.907   <2e-16 ***
+## X11          1.334e-01  6.509e-03  20.490   <2e-16 ***
+## X13         -1.996e-01  3.270e-03 -61.027   <2e-16 ***
+## X14          9.097e-01  3.391e-02  26.823   <2e-16 ***
+## X15          1.641e-02  6.582e-04  24.935   <2e-16 ***
+## X16          3.684e-01  2.557e-02  14.408   <2e-16 ***
+## I(X15^2)    -1.660e-05  1.580e-06 -10.504   <2e-16 ***
+## I(X13^2)     3.476e-03  1.120e-04  31.035   <2e-16 ***
+## I(X16^2)    -4.745e-01  3.816e-02 -12.434   <2e-16 ***
+## X8:X15      -1.498e-05  1.013e-06 -14.790   <2e-16 ***
+## X8:X13       1.650e-04  4.921e-06  33.531   <2e-16 ***
+## X8:X16      -7.202e-04  5.800e-05 -12.417   <2e-16 ***
+## X13:X15     -1.903e-03  5.865e-05 -32.446   <2e-16 ***
+## X15:X16      2.446e-02  1.123e-03  21.776   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.002779 on 9520 degrees of freedom
+## Multiple R-squared:  0.8704, Adjusted R-squared:  0.8702 
+## F-statistic:  3198 on 20 and 9520 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lmFitY2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-9.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-10.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-11.pdf}
+\includegraphics{assign1_starterkit_files/figure-latex/unnamed-chunk-7-12.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# As we can see, all remaining variables are significant, and the }
+\CommentTok{# Adjusted R-squared has increased to a final value of 0.8702}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

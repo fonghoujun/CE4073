@@ -1,0 +1,845 @@
+---
+title: 'Cx4073 : Assignment 1'
+author: "Fong Hou Jun"
+date: "13 Feb 2020"
+output:
+  html_document:
+    highlight: tango
+    theme: united
+  pdf_document: default
+  word_document: default
+student id: U1721741L
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Analysis of Naval Propulsion Data
+
+Import the CSV data file `assign1_NavalData.csv` for analysis, and quickly check the structure of the data.
+
+```{r}
+navalData <- read.csv("assign1_NavalData.csv", header = TRUE)
+str(navalData)
+```
+
+Importing all necessary libraries for the assignment.
+```{r}
+library(dplyr)
+library(corrplot)
+library(RColorBrewer)
+```
+
+The following table summarizes the features/variables in the dataset. You will also find them in the text file `assign1_FeatureNames.txt`. The features/variables `X1` to `X16` are the predictors, while `Y1` and `Y2` are the *target* response variables.
+
+| Variable | Description |
+| -------- | ----------- |
+| X1 | Lever position (lp) |
+| X2 | Ship speed (v) [knots] |
+| X3 | Gas Turbine shaft torque (GTT) [kN m] |
+| X4 | Gas Turbine rate of revolutions (GTn) [rpm] |
+| X5 | Gas Generator rate of revolutions (GGn) [rpm] |
+| X6 | Starboard Propeller Torque (Ts) [kN] |
+| X7 | Port Propeller Torque (Tp) [kN] |
+| X8 | HP Turbine exit temperature (T48) [C] |
+| X9 | GT Compressor inlet air temperature (T1) [C] |
+| X10 | GT Compressor outlet air temperature (T2) [C] |
+| X11 | HP Turbine exit pressure (P48) [bar] |
+| X12 | GT Compressor inlet air pressure (P1) [bar] |
+| X13 | GT Compressor outlet air pressure (P2) [bar] |
+| X14 | Gas Turbine exhaust gas pressure (Pexh) [bar] |
+| X15 | Turbine Injecton Control (TIC) [%] |
+| X16 | Fuel flow (mf) [kg/s] |
+| Y1 | GT Compressor decay state coefficient |
+| Y2 | GT Turbine decay state coefficient |
+
+
+The data is from a simulator of a naval vessel, characterized by a Gas Turbine (GT) propulsion plant. You may treat the available data as if it is from a hypothetical naval vessel. The propulsion system behaviour has been described with the parameters `X1` to `X16`, as detailed above, and the target is to predict the performance decay of the GT components such as *GT Compressor* and *GT Turbine*. 
+
+**Task** : Build the best possible Linear Model you can to predict both `Y1` and `Y2`, using the training dataset `assign1_NavalData.csv`. Then predict `Y1` and `Y2` values using your model on the test dataset `assign1_NavalPred.csv`.
+
+---
+
+**Continue with Exploratory Data Analysis, Model Building and Prediction. Submit this .Rmd file as your Solution : [StudentID].Rmd**
+
+---
+
+### Basic Exploration of CSV file
+
+Dimensions of the loaded dataset
+```{r}
+dim(navalData)
+```
+Here, we can see that there are 10000 entries in the data and 16 different variables.
+
+Labels of the columns in csv file.
+```{r}
+names(navalData)      
+```
+Names function gives us all the names of the variables in the dataset.
+
+Structure of the loaded dataset
+```{r}
+str(navalData)        
+```
+Structure shows us what kind of data is loaded. `X2`, `X9` and `X12` show are of integer data types, while the rest are numeric data types.
+
+First few rows of the loaded dataset
+```{r}
+head(navalData)
+```
+
+Last few rows of the loaded dataset
+```{r}
+tail(navalData)       
+```
+
+**Basic Visualizations : Histograms**
+
+X1 : Lever position (lp)
+
+```{r}
+hist(navalData$X1, breaks = seq(0, 11, by = 1), col = "lightgreen")
+```
+
+X2 : Ship speed (v) [knots]
+
+```{r}
+hist(navalData$X2, breaks = seq(0, 27, by = 3), col = "lightgreen")
+```
+
+X3 : Gas Turbine shaft torque (GTT) [kN m] 
+
+```{r}
+hist(navalData$X3, breaks = seq(0, 80000, by = 5000), col = "lightgreen")
+```
+
+X4  : Gas Turbine rate of revolutions (GTn) [rpm]
+
+```{r}
+hist(navalData$X4, breaks = seq(1000, 4000, by = 500), col = "lightgreen")
+```
+
+X5  : Gas Generator rate of revolutions (GGn) [rpm] 
+
+```{r}
+hist(navalData$X5, breaks = seq(6500, 10000, by = 500), col = "lightgreen")
+```
+
+X6  : Starboard Propeller Torque (Ts) [kN]    
+
+```{r}
+hist(navalData$X6, breaks = seq(0, 700, by = 100), col = "lightgreen")
+```
+
+X7  : Port Propeller Torque (Tp) [kN]
+
+```{r}
+hist(navalData$X7, breaks = seq(0, 700, by = 100), col = "lightgreen")
+```
+
+X8  : HP Turbine exit temperature (T48) [C]  
+
+```{r}
+hist(navalData$X8, breaks = seq(400, 1200, by = 50), col = "lightgreen")
+```
+
+X9  : GT Compressor inlet air temperature (T1) [C]  
+
+```{r}
+hist(navalData$X9, breaks = seq(100, 500, by = 50), col = "lightgreen")
+```
+
+X10 : GT Compressor outlet air temperature (T2) [C] 
+
+```{r}
+hist(navalData$X10, col = "lightgreen")
+```
+
+X11 : HP Turbine exit pressure (P48) [bar]        
+
+```{r}
+hist(navalData$X11, col = "lightgreen")
+```
+
+X12 : GT Compressor inlet air pressure (P1) [bar]
+
+```{r}
+hist(navalData$X12, breaks = seq(0, 10, by = 1), col = "lightgreen")
+```
+
+X13 : GT Compressor outlet air pressure (P2) [bar]  
+
+```{r}
+hist(navalData$X13,breaks = seq(5, 25, by = 1), col = "lightgreen")
+```
+
+X14 : Gas Turbine exhaust gas pressure (Pexh) [bar] 
+
+```{r}
+hist(navalData$X14,breaks = seq(1, 1.1, by = 0.01), col = "lightgreen")
+```
+
+X15 : Turbine Injecton Control (TIC) [%]            
+
+```{r}
+hist(navalData$X15,breaks = seq(0, 100, by = 10), col = "lightgreen")
+```
+
+X16 : Fuel flow (mf) [kg/s]                         
+
+```{r}
+hist(navalData$X16, breaks = seq(0, 2, by = 0.1), col = "lightgreen")
+```
+
+Y1  : GT Compressor decay state coefficient         
+
+```{r}
+hist(navalData$Y1, breaks = seq(0.94, 1, by = 0.01), col = "lightgreen")
+```
+
+Y2  : GT Turbine decay state coefficient  
+
+```{r}
+hist(navalData$Y2, breaks = seq(0.96, 1, by = 0.01), col = "lightgreen")
+```
+
+**Basic Visualizations : Boxplots**
+
+X1 : Lever position (lp)
+
+```{r}
+boxplot(navalData$X1, horizontal = TRUE, col = "steelblue")
+```
+
+X2 : Ship speed (v) [knots]
+
+```{r}
+boxplot(navalData$X2, horizontal = TRUE, col = "steelblue")
+```
+
+X3 : Gas Turbine shaft torque (GTT) [kN m] 
+
+```{r}
+boxplot(navalData$X3, horizontal = TRUE, col = "steelblue")
+```
+
+X4  : Gas Turbine rate of revolutions (GTn) [rpm]
+
+```{r}
+boxplot(navalData$X4, horizontal = TRUE, col = "steelblue")
+```
+
+X5  : Gas Generator rate of revolutions (GGn) [rpm] 
+
+```{r}
+boxplot(navalData$X5, horizontal = TRUE, col = "steelblue")
+```
+
+X6  : Starboard Propeller Torque (Ts) [kN]    
+
+```{r}
+boxplot(navalData$X6, horizontal = TRUE, col = "steelblue")
+```
+
+X7  : Port Propeller Torque (Tp) [kN]
+
+```{r}
+boxplot(navalData$X7, horizontal = TRUE, col = "steelblue")
+```
+
+X8  : HP Turbine exit temperature (T48) [C]  
+
+```{r}
+boxplot(navalData$X8, horizontal = TRUE, col = "steelblue")
+```
+
+X9  : GT Compressor inlet air temperature (T1) [C]  
+
+```{r}
+boxplot(navalData$X9, horizontal = TRUE, col = "steelblue")
+```
+
+X10 : GT Compressor outlet air temperature (T2) [C] 
+
+```{r}
+boxplot(navalData$X10, horizontal = TRUE, col = "steelblue")
+```
+
+X11 : HP Turbine exit pressure (P48) [bar]        
+
+```{r}
+boxplot(navalData$X11, horizontal = TRUE, col = "steelblue")
+```
+
+X12 : GT Compressor inlet air pressure (P1) [bar]
+
+```{r}
+boxplot(navalData$X12, horizontal = TRUE, col = "steelblue")
+```
+
+X13 : GT Compressor outlet air pressure (P2) [bar]  
+
+```{r}
+boxplot(navalData$X13, horizontal = TRUE, col = "steelblue")
+```
+
+X14 : Gas Turbine exhaust gas pressure (Pexh) [bar] 
+
+```{r}
+boxplot(navalData$X14, horizontal = TRUE, col = "steelblue")
+```
+
+X15 : Turbine Injecton Control (TIC) [%]            
+
+```{r}
+boxplot(navalData$X15, horizontal = TRUE, col = "steelblue")
+```
+
+X16 : Fuel flow (mf) [kg/s]                         
+
+```{r}
+boxplot(navalData$X16, horizontal = TRUE, col = "steelblue")
+```
+
+Y1  : GT Compressor decay state coefficient         
+
+```{r}
+boxplot(navalData$Y1, horizontal = TRUE, col = "magenta")
+```
+
+Y2  : GT Turbine decay state coefficient  
+
+```{r}
+boxplot(navalData$Y2, horizontal = TRUE, col = "magenta")
+```
+
+**Some key observations**: The values of `X6` and `X7` are identical. Therefore, we can consider removing either of them as we do not require duplicate data.
+
+Statistical summary for all variables in loaded dataset
+```{r}
+summary(navalData)   
+```
+It returns a table with the results of the summary function being applied to each variable in the loaded dataset. It shows the Min, Median, Mean, Max, 1st and 3rd Quartile.
+
+For a more compressed view of the loaded dataset, we can use the function `glimpse()`.
+```{r}
+glimpse(navalData)
+```
+It shows the number of rows, variables, variable type, name as well as the values in each variable.
+
+### Advanced Exploration of CSV file
+
+Since we loaded the dataset at the start of the assignment, we can view the correlation plot of all variables.
+```{r}
+cor(navalData)
+```
+The function returns a warning that the standard deviation is zero. This is due to values which are constant throughout the dataset. Therefore, we will remove these as later they do not value add to the prediction later on.
+
+```{r}
+summary(navalData)
+```
+
+We will now visualize all variables and how they are related to each other using a heatmap. This heatmap also shows how strongly related each variable is to each other. As we are primarily predicting for `Y1` and `Y2`, these 2 rows and columns will be of most interest to us.
+```{r}
+corrplot.mixed(cor(navalData), upper.col = brewer.pal(n=10, name ="Spectral"),
+               lower.col = "blue", upper = "pie", number.cex = .75, number.digits = 3, na.label = "NA")
+```
+
+Here, we will plot a 2-dimensional scatterplot of all pairs of variables. This can show us whether the variables will have any linearity between each other.
+```{r}
+pairs(navalData, pch = 19, col = "blue")
+```
+
+Removing values that are not important to our prediction. Namely, `X7` because its a duplicate, and `X9` & `X12` because they are variables that contain the same information.
+```{r}
+x <- c(1,2,3,4,5,6,8,10,11,13,14,15,16,17,18)
+navalDataRevised <- navalData[,x]
+cor(navalDataRevised)
+```
+As seen, the warning has disappeared, and we can move on to explore other components of our dataset.
+
+A quick summary of our dataset after removing redundant variables.
+```{r}
+summary(navalDataRevised)
+```
+
+---
+
+**For the linear model, we will be using Adjusted R-Squared as a measurement for model improvement. When removing an insignificantvariable, Multiple R-squared may not increase but adjusted will.The same occurs when adding an insignificant variable. Multiple R-squared will increase, but adjusted may not. This happens as Adjusted R-Squared takes into consideration the number of variables being tested, while Multiple R-squared does not.**
+
+---
+
+### Basic Linear Modeling for Prediction of Y1
+
+Linear model on `Y1` vs the rest of the variables. Model 1, Full Model
+```{r}
+lmFit_Y1_V1 <- lm(Y1 ~ . - Y2, data = navalDataRevised)
+
+# Summary of Model 1
+summary(lmFit_Y1_V1)
+```
+The "Full Model" statistics provides us with useful information on the residuals, coefficients and formula of the linear model. The coefficients show how significant each variable will be when predicting for `Y1`.
+
+From here on out, we can improve the model by removing the least significant variable one at a time. Variables with a higher value of **Pr(>|t|)** will be the first to be removed.
+
+Pr(>|t|) is the probability of the coefficient of a variable going to **zero**. The higher this probability, the less significant it is. As we can see from the table, `X4` is the least significant variable, and we will be removing it from the linear model.
+
+Linear model on `Y1` without X4. Model 2
+```{r}
+lmFit_Y1_V2 <- update(lmFit_Y1_V1, ~ . - X4, data = navalDataRevised)
+
+# Summary of Model 2
+summary(lmFit_Y1_V2)
+```
+After removing `X4`, which had a high probability of 0.944, it did not improve its Adjusted R-squared. However, as removing it did not affect the probabilities of the remaining variables, it was safe to remove from the formula.
+
+We have now removed variables that had the highest probability of going to zero. The remaining variables are all signifcant to our linear model. We will now introduce **non-linear variables and interactions** between variables to the model.
+
+### Advanced Linear Modeling for Prediction of Y1
+
+Referring back to the correlation table between all the variables, we can see that there is a high correlation between `X10` and `Y1`, at -0.05189. Thus, we can introduce `X10^2` as a non-linear term.
+
+Linear model on `Y1`, introducing non-linear term: `X10^2`. Model 3
+```{r}
+lmFit_Y1_V3 <- update(lmFit_Y1_V2, ~ . + I(X10^2), data = navalDataRevised)
+
+# Summary of Model 3
+summary(lmFit_Y1_V3)
+
+```
+After introducing this non-linear term, we can infer that it is indeed useful as the Adjusted R-squared increased significantly, from 0.8396 to 0.8961! Folllowing this trend, we will introduce variables that show a high correlation with Y1, namely, `X8` and `X15`.
+
+Linear model on `Y1`, introducing non-linear term: `X8^2`. Model 4
+```{r}
+lmFit_Y1_V4 <- update(lmFit_Y1_V3, ~ . + I(X8^2), data = navalDataRevised)
+
+# Summary of Model 4
+summary(lmFit_Y1_V4)
+```
+From the summary table of Model 4, it is again proven that X8^2 is a useful variable. The Adjusted R-squared increased again, from 0.8961 to 0.9343. Now, we will add in X15^2.
+
+Linear model on `Y1`, introducing non-linear term: `X15^2`. Model 5
+```{r}
+lmFit_Y1_V5 <- update(lmFit_Y1_V4, ~ . + I(X15^2), data = navalDataRevised)
+
+# Summary of Model 5
+summary(lmFit_Y1_V5)
+```
+From the summary table of Model 5, it shows that the Adjusted R-squared only improved by 0.0002. However, as none of the other variables increased in Pr(>|t|), and X15^2 has a very low probability, we can keep this variable in our linear regression formula.
+
+Moving forward, I decided to introduce to the formula non-linear variables(intervals) which showed prominent trends of non-linearity. These variables are `X10`, `X8` and `X15`. We will be introducing non-linear variables `X10:X8`, `X10:X15` and `X8:X1`5.
+
+Linear model on `Y1`, introducing non-linear term: `X10:X8`. Model 6
+```{r}
+lmFit_Y1_V6 <- update(lmFit_Y1_V5, ~ . + X10:X8, data = navalDataRevised)
+
+# Summary of Model 6
+summary(lmFit_Y1_V6)
+```
+From the summary of Model 6, we can see that the Adjusted R-squared once again had an increase, from 0.9345 to 0.9367!
+
+Linear model on `Y1`, introducing non-linear term: `X10:X15`. Model 7
+```{r}
+lmFit_Y1_V7 <- update(lmFit_Y1_V6, ~ . + X10:X15, data = navalDataRevised)
+
+# Summary of Model 7
+summary(lmFit_Y1_V7)
+```
+From the summary of Model 7, we can see that the Adjusted R-squared once again had an increase, from 0.9367 to 0.9433!
+
+Linear model on `Y1`, introducing non-linear term: `X8:X15`. Model 8
+```{r}
+lmFit_Y1_V8 <- update(lmFit_Y1_V7, ~ . + X8:X15, data = navalDataRevised)
+
+# Summary of Model 8
+summary(lmFit_Y1_V8)
+```
+From the summary of Model 8, we can see that the Adjusted R-squared once again had an increase, from 0.9433 to 0.9434! As we can see, adding each of these variables improved the Adjusted R-squared, which also improves the linear model overall.
+
+Now, we will proceed to remove any potential outliers in our dataset, using a formula known as **Cooks Distance**.
+
+Plot our model to look for potential outliers
+```{r}
+plot(lmFit_Y1_V8)
+```
+
+Calculating cooks distance, and set a threshold of up to **2 standard deviation** to remove outliers.
+```{r}
+cd <- cooks.distance(lmFit_Y1_V8)
+navalDataRevisedY1.clean <- navalDataRevised[abs(cd) < 4/nrow(navalDataRevised), ]
+```
+
+Viewing and confirming the variables (linear and non-linear) used in our linear model
+```{r}
+formula(lmFit_Y1_V8)
+```
+
+Fitting our "Best Model" with cleaned data
+```{r}
+lmFitY1 <- lm(formula(lmFit_Y1_V8), data = navalDataRevisedY1.clean)
+```
+
+Evaluation to find the increase in model performance
+```{r}
+summary(lmFitY1)
+plot(lmFitY1)
+```
+After removing the outliers, our Adjusted R-squared has once again improved, from 0.9434 to 0.9517. 
+
+---
+
+**Similarly for Y2, we will be using Adjusted R-squared as a measurement of how accurate our model is.**
+
+---
+
+### Basic Linear Modeling for Prediction of Y2
+
+Linear model on `Y2` vs the rest of the variables. Model 1, Full Model
+```{r}
+lmFit_Y2_V1 <- lm(Y2 ~ . - Y1, data = navalDataRevised)
+
+# Summary of Model 1
+summary(lmFit_Y2_V1)
+```
+The "Full Model" statistics provides us with useful information on the residuals, coefficients and formula of the linear model. The coefficients show how significant each variable will be when predicting for `Y2`
+
+From here on out, we can improve the model by removing the least significant variable one at a time. Variables with a higher value of **Pr(>|t|)** will be the first to be removed.
+
+Pr(>|t|) is the probability of the coefficient of a variable going to **zero**. The higher this probability, the less significant it is. From the table, it shows that X2 is the least significant variable, and we will be removing that from the linear model.
+
+Linear model on ``Y2` without `X2`. Model 2
+```{r}
+lmFit_Y2_V2 <- update(lmFit_Y2_V1, ~ . - X2, data = navalDataRevised)
+
+# Summary of Model 2
+summary(lmFit_Y2_V2)
+```
+From the table, it seems that removing X2 decreased the Adjusted R-squared value. However, it also changed the Pr(>|t|) value of X1 to be significantly lower. Thus, removing `X2` is a good thing as all variables in the formula now are very important.
+
+We have now removed variables that had the highest probability of going to zero, and we can proceed to introduce Non-linear variables and interactions between variables to the model.
+
+### Advanced Linear Modeling on Predicting Y2
+
+After reberring to the correlation table between variables, we can see that there is a high negative correlation between X18 and Y1, at -0.03974. Thus, we will introduce X8^2 as a non-linear term into the system.
+
+Linear model on `Y2`, introducing non-linear term `X8^2`. Model 3
+```{r}
+lmFit_Y2_V3 <- update(lmFit_Y2_V2, ~ . + I(X8^2), data = navalDataRevised)
+
+# Summary of Model 3
+summary(lmFit_Y2_V3)
+```
+After introducing `X8^2` into the system, it seems that this variable is not very significant as it raised the Adjusted R-squared only by a slight amount. We will continue to add other variables which show strong correlations with Y2
+
+Linear model on `Y2`, introducing non-linear term `X15^2`. Model 4
+```{r}
+lmFit_Y2_V4 <- update(lmFit_Y2_V3, ~ . + I(X15^2), data = navalDataRevised)
+
+# Summary of Model 4
+summary(lmFit_Y2_V4)
+```
+After adding the term `X15^2`, the Adjusted R-sqaured increased quite significantly, from 0.7885 to 0.8028! This shows that adding non-linear terms that have a higher coefficient of correlation would benefit the linear regression model.
+
+Linear model on `Y2`, introducing non-linear term `X13^2`. Model 5
+```{r}
+lmFit_Y2_V5 <- update(lmFit_Y2_V4, ~ . + I(X13^2), data = navalDataRevised)
+
+# Summary of Model 5
+summary(lmFit_Y2_V5)
+```
+From the table, it shows that the Adjusted R-squared increased once again. However, the Pr(>|t|) value of `X8^2` has increased significantly. As this will not benefit our model, we will remove this term, while adding in `X16^2`
+
+Linear model on Y2, introducing non-linear term `X16^2`, removing `X8^2`. Model 6
+```{r}
+lmFit_Y2_V6 <- update(lmFit_Y2_V5, ~ . + I(X16^2) - I(X8^2), data = navalDataRevised)
+
+# Summary of Model 6
+summary(lmFit_Y2_V6)
+```
+From the table, the Adjusted R-squared value has increased again from 0.8156 to 0.8222.
+
+Moving forward, I decided to introduce to the formula non-linear variables(intervals) which showed prominent trends of non-linearity. These variables are `X8`, `X15`, `X13` and `X16`. We will be introducing non-linear variables `X8:X15`, `X8:X13`, `X8:X16`, `X15:X13`, `X15:X16` and `X13:X16`.
+
+Linear model on `Y2`, introducing non-linear terms with prominent trends. Model 7
+```{r}
+lmFit_Y2_V7 <- update(lmFit_Y2_V6, ~ . + X8:X15
+                                       + X8:X13
+                                       + X8:X16
+                                       + X15:X13
+                                       + X15:X16
+                                       + X13:X16, data = navalDataRevised)
+
+#Summary of Model 7
+summary(lmFit_Y2_V7)
+```
+As we can see, adding these terms resulted in yet another increase in Adjusted R-squared, from 0.8222 to 0.8476. However, the terms `X16` and `X13:X16` have increased in their Pr(|t|). However since they are still rated relatively high, we can leave the model as it is.
+
+We will now proceed to remove any potential outliers in the dataset using **Cooks Distance**.
+
+Plot out our model to visualise and eyeball any potential outliers
+```{r}
+plot(lmFit_Y2_V7)
+```
+
+Calculating cooks distance, and set a threshold of up to **2 standard deviation** to remove outliers.
+```{r}
+cd <- cooks.distance(lmFit_Y2_V7)
+navalDataRevisedY2.clean <- navalDataRevised[abs(cd) < 4/nrow(navalDataRevised), ]
+```
+
+Viewing and confirming the variables used in our linear model
+```{r}
+formula(lmFit_Y2_V7)
+```
+
+Fitting our "Best Model" with cleaned data
+```{r}
+lmFitY2 <- lm(formula(lmFit_Y2_V7), data = navalDataRevisedY2.clean)
+```
+
+Evaluation to find the increase in model performance
+```{r}
+summary(lmFitY2)
+plot(lmFitY2)
+```
+After removing the outliers, the Adjusted R-squared has improved once again, from 0.8452 to 0.87. However, the term `X13:X16` has increased in its Pr(|t|) value, to a point where it is no longer significant. We will re do the whole linear model, but without `X13:X16`
+
+Linear model on `Y2`, introducing non-linear terms without `X13:X16`. Model 8
+```{r}
+lmFit_Y2_V8 <- update(lmFit_Y2_V7, ~ . - X13:X16, data = navalDataRevised)
+
+#Summary of Model 8
+summary(lmFit_Y2_V8)
+```
+From the graph, we can see that all the variables are significant, and the Adjusted R-squared only dropped by 0.0001. 
+
+We will now move on to remove potential outliers using Cooks Distance.
+```{r}
+cd <- cooks.distance(lmFit_Y2_V8)
+navalDataRevisedY2.clean <- navalDataRevised[abs(cd) < 4/nrow(navalDataRevised), ]
+```
+
+Viewing and confirming variables used in our linear model
+```{r}
+formula(lmFit_Y2_V8)
+```
+
+Fitting our "Best Model" with cleaned data
+```{r}
+lmFitY2 <- lm(formula(lmFit_Y2_V8), data = navalDataRevisedY2.clean)
+```
+
+Evaluation to find the increase in model performance
+```{r}
+summary(lmFitY2)
+plot(lmFitY2)
+```
+As we can see, all remaining variables are highly significant, and the Adjusted R-squared has increased to a final value of 0.8702
+
+### Prediction of Y1 and Y2 in the Pred dataset
+
+First, we will have to read in the predicted data given. This will be used for our confidence and prediction intervals.
+```{r}
+navalDataPred <- read.csv("assign1_NavalPred.csv", header = TRUE)
+```
+
+In this section, we will be predicting 2 intervals, Confidence and Prediction. Confidence interval shows how much the model can vary, and prediction interval shows how much the prediction can vary. In these 2 tables, we will see the **fit, upper and lower limits** of the prediction.
+```{r}
+predict(lmFitY1, navalDataPred, interval = "confidence", level = 0.95)
+```
+
+```{r}
+predict(lmFitY1, navalDataPred, interval = "prediction", level = 0.95)
+```
+
+Here are the standard errors of coefficients
+```{r}
+coef(summary(lmFitY1))
+```
+
+Confidence Intervals of coefficients
+```{r}
+confint(lmFitY1)
+```
+
+Variance of residuals
+```{r}
+var(lmFitY1$residuals)
+```
+
+Here, we will be plotting `Y1` against the variable with the highest correlation with `Y1`, which is `X10`
+```{r}
+plot(navalDataRevised$X10, navalDataRevised$Y1,
+     pch = 21, col = "lightblue", cex = 0.5,
+     xlab = "X10", ylab = "Y1")
+predictionY1 <- predict(lmFitY1, newdata = navalDataPred)
+points(navalDataPred$X10, predictionY1, col = "blue", cex = 0.5, pch = 19)
+
+confint <- predict(lmFitY1, newdata = navalDataPred, interval = "confidence", level = 0.95)
+points(navalDataPred$X10, confint[,2], col = "brown4", cex = 0.5, pch = 19)
+points(navalDataPred$X10, confint[,3], col = "brown4", cex = 0.5, pch = 19)
+
+predint <- predict(lmFitY1, newdata = navalDataPred, interval = "prediction", level = 0.95)
+points(navalDataPred$X10, confint[,2], col = "darkmagenta", cex = 0.5, pch = 19)
+points(navalDataPred$X10, confint[,3], col = "darkmagenta", cex = 0.5, pch = 19)
+```
+As we can see from the plot diagram, there will be very little variance as we are using our best model.
+
+Now, we will move onto predicting on `Y2`
+```{r}
+predict(lmFitY2, navalDataPred, interval = "confidence", level = 0.95)
+```
+
+```{r}
+predict(lmFitY2, navalDataPred, interval = "prediction", level = 0.95)
+```
+
+Here are the standard errors of coefficients
+```{r}
+coef(summary(lmFitY2))
+```
+
+Confidence Intervals of coefficients
+```{r}
+confint(lmFitY2)
+```
+
+Variance of residuals
+```{r}
+var(lmFitY2$residuals)
+```
+
+Here, we will be plotting `Y2` against the variable with the highest correlation with `Y2`, which is `X8`
+```{r}
+plot(navalDataRevised$X8, navalDataRevised$Y2,
+     pch = 21, col = "lightblue", cex = 0.5,
+     xlab = "X10", ylab = "Y1")
+
+predictionY2 <- predict(lmFitY2, newdata = navalDataPred)
+points(navalDataPred$X8, predictionY2, col = "blue", cex = 0.5, pch = 19)
+
+confint <- predict(lmFitY1, newdata = navalDataPred, interval = "confidence", level = 0.95)
+points(navalDataPred$X8, confint[,2], col = "brown4", cex = 0.5, pch = 19)
+points(navalDataPred$X8, confint[,3], col = "brown4", cex = 0.5, pch = 19)
+
+predint <- predict(lmFitY1, newdata = navalDataPred, interval = "prediction", level = 0.95)
+points(navalDataPred$X8, confint[,2], col = "darkmagenta", cex = 0.5, pch = 19)
+points(navalDataPred$X8, confint[,3], col = "darkmagenta", cex = 0.5, pch = 19)
+```
+
+### Prediction values of Y1 and Y2
+
+For the prediction accuracy of `Y1` and `Y2`, we will be using **Root Mean Squared Error (RMSE)**. RMSE is a function that gives extra weight to outliers of the dataset.
+
+Prediction accuracy of `Y1`
+```{r}
+Y1sum <- sum((lmFitY1$residuals)^2)/nrow(navalDataRevisedY1.clean)
+Y1root <- sqrt(Y1sum)
+Y1root
+```
+As we can see, the **RMSE** of `Y1` after fitting our best model and removing outliers is a very small value of 0.003345139.
+
+Prediction accuracy of `Y2`
+```{r}
+Y2sum <- sum((lmFitY2$residuals)^2)/nrow(navalDataRevisedY2.clean)
+Y2root <- sqrt(Y2sum)
+Y2root
+```
+As we can see, the **RMSE** of `Y2` after fitting our best model and removing outliers is a very small value of 0.00277562.
+
+### Additional parts for Assignment
+
+**Performance of Y1**
+Initial "total sum of squares" of errors
+```{r}
+mean(navalData$Y1)
+sum((navalData$Y1 - mean(navalData$Y1))^2)
+```
+
+Final "residual sum of squares" of errors
+```{r}
+lmFitY1$residuals
+sum(lmFitY1$residuals^2)
+summary(lmFitY1$residuals)
+boxplot(lmFitY1$residuals)
+```
+No outliners found on the boxplot.
+
+Improvement of the sum of squares
+```{r}
+TSS_Y1 <- sum((navalData$Y1 - mean(navalData$Y1))^2)
+RSS_Y1 <- sum(lmFitY1$residuals^2)
+```
+
+This is precisely "Multiple R-squared"
+```{r}
+(TSS_Y1 - RSS_Y1) / TSS_Y1
+```
+
+Root Mean Squared Error
+```{r}
+MSE_Y1 <- RSS_Y1/nrow(navalDataRevisedY1.clean)
+RMSE_Y1 <- sqrt(MSE_Y1)
+RMSE_Y1
+```
+
+Compare with the first Linear Model
+```{r}
+RSS_1 <- sum(lmFit_Y1_V1$residuals^2)
+MSE_1 <- RSS_1/nrow(within(navalData, rm(Y2)))
+RMSE_1 <- sqrt(MSE_1)
+RMSE_1
+```
+
+**Performance of Y2**
+
+Initial "total sum of squares" of errors
+```{r}
+mean(navalData$Y2)
+sum((navalData$Y2 - mean(navalData$Y2))^2)
+```
+
+Final "residual sum of squares" of errors
+```{r}
+lmFitY2$residuals
+sum(lmFitY2$residuals^2)
+summary(lmFitY2$residuals)
+boxplot(lmFitY2$residuals)
+```
+No outliners found on the boxplot.
+
+Improvement of the sum of squares
+```{r}
+TSS_Y2 <- sum((navalData$Y2 - mean(navalData$Y2))^2)
+RSS_Y2 <- sum(lmFitY2$residuals^2)
+```
+
+This is precisely "Multiple R-squared"
+```{r}
+(TSS_Y2 - RSS_Y2) / TSS_Y2
+```
+
+Root Mean Squared Error
+```{r}
+MSE_Y2 <- RSS_Y2/nrow(navalDataRevisedY2.clean)
+RMSE_Y2 <- sqrt(MSE_Y2)
+RMSE_Y2
+```
+
+Compare with the first Linear Model
+```{r}
+RSS_2 <- sum(lmFit_Y2_V1$residuals^2)
+MSE_2 <- RSS_2/nrow(within(navalData, rm(Y1)))
+RMSE_2 <- sqrt(MSE_2)
+RMSE_2
+```
+
+---
+
+End of Assignment 1
+
+---
